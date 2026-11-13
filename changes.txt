@@ -1,0 +1,7 @@
+remove figure 5 , 13.b 
+replace Tektronix DSO with only DSO same for AFG and DC supply
+confirm mode in table 6 and keep only one mode not 2 different columns
+check fig 15 
+ Analysis and Discussion Question - make this section to the point no bullshit like do not make it so long 
+
+increase size of figure 18 like they look to small to see 

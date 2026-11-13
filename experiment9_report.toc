@@ -1,0 +1,25 @@
+\contentsline {section}{\numberline {1}Aim and Objectives}{3}{section.1}%
+\contentsline {section}{\numberline {2}Apparatus and Components Required}{3}{section.2}%
+\contentsline {section}{\numberline {3}Theoretical Background and Mathematical Modeling}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Basic Buck Topology and Volt-Second Balance}{3}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Switch ON State ($0 \le t < DT$)}{5}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Switch OFF State ($DT \le t < T$)}{6}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}Volt-Second Balance and Exact Conversion Ratio}{6}{subsubsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.2}Inductor Current Ripple and Conduction Boundaries}{6}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Output Voltage Ripple and Low-ESR Capacitor Design}{7}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Pulse-Width Modulator (PWM) Operation}{7}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Closed-Loop Error Amplifier and Stability Considerations}{8}{subsection.3.5}%
+\contentsline {section}{\numberline {4}Design Calculations}{8}{section.4}%
+\contentsline {section}{\numberline {5}Experimental Procedure and Safety Precautions}{8}{section.5}%
+\contentsline {section}{\numberline {6}Part A: Pulse-Width Modulator Characterization}{9}{section.6}%
+\contentsline {section}{\numberline {7}Part B: Open-Loop Power Stage Characterization}{9}{section.7}%
+\contentsline {section}{\numberline {8}Part C: Closed-Loop Line Regulation}{12}{section.8}%
+\contentsline {section}{\numberline {9}Part D: Closed-Loop Load Regulation and Conduction Modes}{14}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Physical Cause of Light-Load Runaway (Bleeder Only)}{14}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}DSO Captures of Discontinuous Conduction Ringing}{15}{subsection.9.2}%
+\contentsline {section}{\numberline {10}Part E: Output Ripple Voltage and Noise Analysis}{16}{section.10}%
+\contentsline {section}{\numberline {11}Part F: Power Efficiency and Loss Budget Analysis}{16}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Power Stage Loss Budget at 5.0\,V and 100\,mA Load}{18}{subsection.11.1}%
+\contentsline {section}{\numberline {12}Part G: Comparison with Series Linear Regulator}{18}{section.12}%
+\contentsline {section}{\numberline {13}Analysis and Discussion Questions}{18}{section.13}%
+\contentsline {section}{\numberline {14}Conclusion}{21}{section.14}%

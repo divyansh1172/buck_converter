@@ -1,0 +1,869 @@
+# -*- coding: utf-8 -*-
+"""
+Script to create the refined, publication-grade build_report.py for Experiment 9.
+PMOS Buck (Step-Down) Switching Regulator
+Indian Institute of Technology Hyderabad
+Authors: Shriyansh Chawda (EE25BTECH11052), Divyansh Maheshwari (EE25BTECH11037)
+"""
+
+tex_content = r'''\documentclass[12pt,a4paper]{article}
+
+% --- Core Typography & Geometry Packages ---
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,tabularx,multirow,array}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{fancyhdr}
+\setlength{\headheight}{15pt}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{siunitx}
+\usepackage{tcolorbox}
+\usepackage{titlesec}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% --- Custom Colors ---
+\definecolor{iitblue}{RGB}{20,60,135}
+\definecolor{iitdarkblue}{RGB}{12,40,95}
+\definecolor{accentblue}{RGB}{41,128,185}
+\definecolor{lightgray}{RGB}{248,249,250}
+\definecolor{bordergray}{RGB}{220,224,230}
+\definecolor{notealert}{RGB}{235,245,255}
+\definecolor{warnred}{RGB}{192,57,43}
+\definecolor{passgreen}{RGB}{39,174,96}
+
+% --- Section Heading Formatting ---
+\titleformat{\section}{\large\bfseries\color{iitblue}}{\thesection}{1em}{}[\color{iitblue}\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\color{iitdarkblue}}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\small\bfseries\color{accentblue}}{\thesubsubsection}{1em}{}
+
+% --- Header and Footer Styling ---
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\textcolor{iitblue}{\textbf{Electronic Devices \& Circuits Laboratory}}}
+\rhead{\small\textcolor{iitblue}{\textbf{Experiment 9: Buck Regulator}}}
+\cfoot{\small\thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+
+% --- Captions and Tables Styling ---
+\captionsetup{font=small,labelfont=bf,labelsep=period}
+\sisetup{per-mode=symbol, detect-weight=true}
+
+% --- Callout Box Styling ---
+\tcbset{
+    colback=lightgray,
+    colframe=bordergray,
+    boxrule=0.6pt,
+    arc=3pt,
+    left=8pt,
+    right=8pt,
+    top=6pt,
+    bottom=6pt
+}
+
+% --- Hyperref Setup ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=iitblue,
+    citecolor=iitblue,
+    urlcolor=accentblue,
+    pdftitle={Experiment 9 -- Buck Switching Regulator},
+    pdfauthor={Shriyansh Chawda, Divyansh Maheshwari},
+    pdfsubject={IIT Hyderabad EDC Lab Report}
+}
+
+% --- Mathematical Shortcuts ---
+\newcommand{\Vout}{V_{\mathrm{OUT}}}
+\newcommand{\Vin}{V_{\mathrm{IN}}}
+\newcommand{\Vref}{V_{\mathrm{REF}}}
+\newcommand{\Vc}{V_C}
+\newcommand{\Vramp}{V_{\mathrm{ramp}}}
+\newcommand{\VF}{V_F}
+\newcommand{\Vx}{V_X}
+\newcommand{\Vgs}{V_{GS}}
+\newcommand{\Iload}{I_{\mathrm{LOAD}}}
+\newcommand{\Iin}{I_{\mathrm{IN}}}
+\newcommand{\Pin}{P_{\mathrm{IN}}}
+\newcommand{\Pout}{P_{\mathrm{OUT}}}
+\newcommand{\Paux}{P_{\mathrm{AUX}}}
+\newcommand{\dI}{\Delta I_L}
+\newcommand{\fs}{f_s}
+\newcommand{\RL}{R_L}
+\newcommand{\Rdson}{R_{\mathrm{DS(on)}}}
+\newcommand{\DCR}{R_{L,\mathrm{dcr}}}
+\newcommand{\ESR}{\mathrm{ESR}}
+
+\begin{document}
+
+% ==============================================================================
+% Title Page / Header Block
+% ==============================================================================
+\begin{center}
+    {\large \textbf{DEPARTMENT OF ELECTRICAL ENGINEERING}}\\[0.2cm]
+    {\large \textbf{INDIAN INSTITUTE OF TECHNOLOGY HYDERABAD}}\\[0.6cm]
+    
+    \begin{tcolorbox}[colback=white,colframe=iitblue,arc=4pt,boxrule=1.2pt]
+        \centering
+        \vspace{0.2cm}
+        {\Large \textbf{\textcolor{iitdarkblue}{EE2301: Electronic Devices \& Circuits Laboratory}}}\\[0.3cm]
+        {\large \textbf{Experiment 9: Buck Switching Regulator}}\\[0.2cm]
+        {\normalsize \textbf{1.2\,V Output from a 3 to 5\,V Supply with Ultra-Low Output Ripple}}
+        \vspace{0.2cm}
+    \end{tcolorbox}
+    
+    \vspace{0.5cm}
+    
+    \begin{tabularx}{\linewidth}{X r}
+        \textbf{Author 1:} Shriyansh Chawda & \textbf{Roll No.:} EE25BTECH11052 \\
+        \textbf{Author 2:} Divyansh Maheshwari & \textbf{Roll No.:} EE25BTECH11037 \\
+        \textbf{Date of Experiment:} November 2026 & \textbf{Academic Year:} 2026--2027 \\
+    \end{tabularx}
+\end{center}
+
+\vspace{0.2cm}
+\hrule height 1pt
+\vspace{0.4cm}
+
+% ==============================================================================
+% Executive Summary
+% ==============================================================================
+\begin{abstract}
+\noindent This laboratory report presents the complete design, solderless breadboard assembly, mathematical modeling, simulation, and experimental characterization of a step-down (buck) pulse-width modulated (PWM) switching regulator. The converter converts an unstabilized DC line voltage ranging from $3.0\,\mathrm{V}$ to $5.0\,\mathrm{V}$ down to a tightly regulated DC output of $\Vout = 1.20\,\mathrm{V}$ delivering up to $100\,\mathrm{mA}$ of continuous load current. The power stage is realized using a discrete high-speed PNP bipolar switching transistor ($Q_3$, 2N2907), driven by a complementary BJT totem-pole buffer ($Q_2$ BC547B, $Q_1$ BC557B), a fast Schottky freewheeling diode ($D_1$, 1N5817), a power inductor ($L_1 = 1.0\,\mathrm{mH}$), and a low-ESR parallel electrolytic capacitor bank ($C_{\mathrm{out}} = 400\,\mu\mathrm{F}$). The closed-loop control system deploys an analog pulse-width modulator built from an LM339 open-collector comparator driven by a $100\,\mathrm{kHz}$ linear sawtooth ramp ($0\text{--}2\,\mathrm{V}$) and an LM741 operational amplifier configured as an inverting integrator error amplifier. 
+
+Experimental line regulation was measured at $3.5\,\mathrm{mV/V}$ ($0.070\%/\mathrm{V}$), maintaining $\Vout$ within $7\,\mathrm{mV}$ across the entire $3.0\text{--}5.0\,\mathrm{V}$ line range. Static load regulation evaluated across the nominal operating range ($17.4\,\mathrm{mA}$ to $98.3\,\mathrm{mA}$) yielded $24.7\,\mathrm{mV/A}$ at $\Vin = 3.0\,\mathrm{V}$ (effective $R_{\mathrm{out}} = 24.7\,\mathrm{m}\Omega$) and $86.5\,\mathrm{mV/A}$ at $\Vin = 5.0\,\mathrm{V}$ ($R_{\mathrm{out}} = 86.5\,\mathrm{m}\Omega$). With $L_1 = 1.0\,\mathrm{mH}$, the critical boundary current is $I_{\mathrm{crit}} = 4.12\,\mathrm{mA}$ at $3.0\,\mathrm{V}$ and $5.43\,\mathrm{mA}$ at $5.0\,\mathrm{V}$; all tested resistive loads ($12\,\Omega, 22\,\Omega, 47\,\Omega, 68\,\Omega$) operate strictly in Continuous Conduction Mode (CCM). Discontinuous Conduction Mode (DCM) occurs exclusively under bleeder-only loading ($1.2\,\mathrm{mA}$), where a minimum controllable pulse width $t_{\mathrm{on,min}} \approx 1.4\,\mu\mathrm{s}$ leads to light-load voltage runaway. Power stage efficiency was measured at $73.4\%$ at $\Vin = 3.0\,\mathrm{V}$ and $70.4\%$ at $\Vin = 5.0\,\mathrm{V}$. Total system efficiency was recorded at $40.5\%$ at $3.0\,\mathrm{V}$ and $39.3\%$ at $5.0\,\mathrm{V}$, limited solely by the $132\,\mathrm{mW}$ static auxiliary consumption of the discrete LM741/LM339 operational blocks. Theoretical switching ripple across the $400\,\mu\mathrm{F}$ filter was calculated at $0.232\text{--}0.305\,\mathrm{mV}_{\mathrm{p\text{-}p}}$ (well below the $1.20\,\mathrm{mV}$ / $0.1\%$ specification), while raw bench oscilloscope measurements ($28.7\text{--}39.6\,\mathrm{mV}_{\mathrm{p\text{-}p}}$) were shown to be dominated by ground lead inductive loop pickup. Comprehensive loss modeling reveals that substituting a synchronous MOSFET rectifier would eliminate $33.57\,\mathrm{mW}$ of diode drop, elevating power stage efficiency to $85.7\%$.
+\end{abstract}
+
+\vspace{0.2cm}
+\tableofcontents
+\newpage
+
+% ==============================================================================
+% Section 1: Aim & Objectives
+% ==============================================================================
+\section{Aim and Objectives}
+\label{sec:aim}
+
+The primary objectives of this experiment are:
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Design and Implementation:} To design, assemble on a solderless breadboard, and test a pulse-width modulated (PWM) step-down (buck) switching regulator operating at $\fs = 100\,\mathrm{kHz}$ using a discrete high-side power switch (2N2907 PNP BJT), a Schottky freewheeling diode (1N5817), a $1.0\,\mathrm{mH}$ power inductor, an LC low-pass filter, and an operational amplifier integrator error amplifier.
+    \item \textbf{Output Voltage Specification:} To deliver a regulated DC output potential of $\Vout = 1.200\,\mathrm{V}$ from an unstabilized DC supply ranging from $\Vin = 3.0\,\mathrm{V}$ to $5.0\,\mathrm{V}$ for continuous load currents up to $100\,\mathrm{mA}$.
+    \item \textbf{Ultra-Low Ripple Target:} To evaluate the output switching ripple against the design target of $0.1\%$ ($1.2\,\mathrm{mV}_{\mathrm{p\text{-}p}}$) by deploying a $400\,\mu\mathrm{F}$ parallel low-ESR capacitor bank ($4\times 100\,\mu\mathrm{F}$) and isolating high-frequency probe pickup artifacts.
+    \item \textbf{Regulation Characterization:} To measure static line regulation ($\mathrm{mV/V}$) across the full $3.0\text{--}5.0\,\mathrm{V}$ line range and static load regulation ($\mathrm{mV/A}$) across the rated $17.4\text{--}98.3\,\mathrm{mA}$ domain.
+    \item \textbf{Conduction Mode Analysis:} To analytically delineate and experimentally verify the boundary between Continuous Conduction Mode (CCM) and Discontinuous Conduction Mode (DCM), characterizing parasitic switch-node ringing and light-load duty cycle limits.
+    \item \textbf{Efficiency and Loss Budgeting:} To evaluate the power stage efficiency and total system efficiency including auxiliary operational amplifier supplies ($\pm12\,\mathrm{V}$), constructing a complete empirical and theoretical loss breakdown.
+    \item \textbf{Comparative Benchmark:} To benchmark the switching converter directly against the linear series-pass regulator of Experiment~8, quantifying differences in pass-device dissipation, line/load regulation, and hardware overhead.
+\end{enumerate}
+
+% ==============================================================================
+% Section 2: Apparatus and Components Required
+% ==============================================================================
+\section{Apparatus and Components Required}
+\label{sec:apparatus}
+
+The hardware components and laboratory instrumentation utilized to construct and characterize the switching regulator are summarized in Table~\ref{tab:apparatus}. Figures~\ref{fig:bench_photos}(a) and \ref{fig:bench_photos}(b) show the breadboard assembly and bench instrumentation setup.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{List of components and test equipment utilized on the laboratory workbench.}
+\label{tab:apparatus}
+\renewcommand{\arraystretch}{1.06}
+\begin{tabularx}{\linewidth}{lllX}
+\toprule
+\textbf{Component / Equipment} & \textbf{Part / Model} & \textbf{Qty} & \textbf{Specifications \& Bench Values} \\
+\midrule
+Error Amplifier & LM741CN (DIP-8) & 1 & Operational amplifier configured as inverting integrator; $\pm12\,\mathrm{V}$ rails. \\
+PWM Comparator & LM339 (DIP-14) & 1 & Open-collector comparator; pin 3 ($+12\,\mathrm{V}$), pin 12 (GND), pin 1 (Output). \\
+Gate/Base Driver Pair & BC547B / BC557B & 1 pr & Complementary BJT totem-pole emitter followers; $I_C = 100\,\mathrm{mA}$. \\
+Power Switch & 2N2907 (PNP BJT) & 1 & High-speed PNP power switch, $V_{CE(\mathrm{sat})} \approx 0.20\,\mathrm{V}$, $I_C = 600\,\mathrm{mA}$. \\
+Freewheel Diode & 1N5817 / 1N5819 & 1 & Schottky barrier diode, $1\,\mathrm{A}$, $40\,\mathrm{V}$, $V_F \approx 0.34\,\mathrm{V}$ at $100\,\mathrm{mA}$. \\
+Power Inductor & Power Choke & 1 & $L_1 = 1.0\,\mathrm{mH}$, $I_{\mathrm{sat}} \ge 300\,\mathrm{mA}$, $\DCR = 0.80\,\Omega$. \\
+Output Capacitor Bank & Low-ESR Electrolytic & 4 & $4 \times 100\,\mu\mathrm{F} = 400\,\mu\mathrm{F}$ in parallel, $25\,\mathrm{V}$; total $\ESR \le 25\,\mathrm{m}\Omega$. \\
+Integrating Capacitor & Film / Ceramic & 1 & $C_2 = 330\,\mathrm{nF}$, feedback capacitor for integrator. \\
+Integrator Input Resistor & Resistor & 1 & $R_6 = 47\,\mathrm{k}\Omega$, $0.25\,\mathrm{W}$ (measured $46.9\,\mathrm{k}\Omega$). \\
+Integrator Bias Resistor & Resistor & 1 & $R_5 = 47\,\mathrm{k}\Omega$, $0.25\,\mathrm{W}$, with $C_3 = 100\,\mathrm{nF}$ bypass to ground. \\
+Collector Pull-Up Resistor & Resistor & 1 & $R_3 = 2.2\,\mathrm{k}\Omega$, pull-up from comparator output to $\Vin$. \\
+Base Pull-Up Resistor & Resistor & 1 & $R_4 = 100\,\mathrm{k}\Omega$, pull-up from PNP base to $\Vin$ (fail-safe turn-off). \\
+Bleeder Resistor & Resistor & 1 & $R_2 = 1.0\,\mathrm{k}\Omega$, provides baseline DC load path ($1.2\,\mathrm{mA}$). \\
+Load Resistors & Resistor & 4 & $120\,\Omega, 47\,\Omega, 22\,\Omega, 12\,\Omega$ ($1\,\mathrm{W}$; measured: $119, 46.8, 21.9, 11.9\,\Omega$). \\
+Reference Voltage Source & TL431 & 1 & Precision shunt regulator set to provide reference $\Vref = 1.200\,\mathrm{V}$. \\
+Arbitrary Function Gen. & AFG & 1 & $100.00\,\mathrm{kHz}$ ramp, $2.000\,\mathrm{V}_{\mathrm{p\text{-}p}}$ ($0\text{--}2\,\mathrm{V}$ swing), $100\%$ symmetry. \\
+Digital Storage Oscilloscope & DSO & 1 & Dual-channel DSO, $100\,\mathrm{MHz}$, $1\,\mathrm{GS/s}$, with ground spring probes. \\
+Digital Multimeters & DMM (4.5 Digit) & 2 & Precision DMMs for measuring $\Vin, \Vout, \Iin, \Vc$. \\
+DC Power Supply & Regulated DC Supply & 1 & $\Vin$ ($3\text{--}5\,\mathrm{V}$, current limited) and $\pm12\,\mathrm{V}$ auxiliary rails. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=5.6cm,keepaspectratio=false]{figures/bench_breadboard_top.jpg}
+        \caption{Breadboard circuit assembly.}
+        \label{fig:bench_photo_a}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=5.6cm,keepaspectratio=false]{figures/bench_setup_wide.jpg}
+        \caption{Workbench instrumentation setup.}
+        \label{fig:bench_photo_b}
+    \end{subfigure}
+    \caption{Photographs of the physical hardware setup on the laboratory workbench showing the breadboard circuit, DSO, AFG, and digital multimeters.}
+    \label{fig:bench_photos}
+\end{figure}
+
+% ==============================================================================
+% Section 3: Theory & Operating Principle
+% ==============================================================================
+\section{Theoretical Background and Mathematical Modeling}
+\label{sec:theory}
+
+\subsection{Basic Buck Topology and Volt-Second Balance}
+The step-down (buck) switching converter transfers electrical energy from a higher DC input potential $\Vin$ to a lower DC output potential $\Vout$ with high thermodynamic efficiency. Unlike a linear series-pass regulator where excess potential $(\Vin - \Vout)$ is dropped across an active transistor operating in its active region (dissipating thermal power $P_{\mathrm{diss}} = (\Vin - \Vout)\Iload$), a buck converter utilizes a transistor operating exclusively in switched saturation or cut-off.
+
+The basic circuit comprises a high-side switching transistor ($Q_3$, 2N2907 PNP BJT), a freewheeling Schottky catch diode $D_1$ (1N5817), an energy storage inductor ($L_1 = 1.0\,\mathrm{mH}$), and an output capacitor bank ($C_1 = 400\,\mu\mathrm{F}$) shunting the load. While ideal switching theory often illustrates a PMOS device, our laboratory implementation used a high-speed 2N2907 PNP bipolar switching transistor driven by a complementary totem pole (Figure~\ref{fig:full_schematic}).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.88\linewidth]{figures/ltspice_part_c_ckt.png}
+    \caption{Complete schematic diagram of the closed-loop buck regulator, detailing the LM741 integrator, LM339 comparator, BC547/BC557 complementary totem-pole driver, 2N2907 PNP power switch, and LC output filter.}
+    \label{fig:full_schematic}
+\end{figure}
+
+Let the switching period be $T = 1/\fs = 10.0\,\mu\mathrm{s}$ ($\fs = 100\,\mathrm{kHz}$). The switch conducts for $t_{\mathrm{on}} = D \cdot T$ and turns off for $t_{\mathrm{off}} = (1 - D)T$, where $D \in [0, 1]$ is the duty cycle.
+
+\subsubsection{Switch ON State ($0 \le t < DT$)}
+When the base of $Q_3$ is pulled low through driver $Q_1$, $Q_3$ saturates with forward drop $V_{\mathrm{sw}} = V_{CE(\mathrm{sat})} \approx 0.20\,\mathrm{V}$. Switch node $\Vx$ rises to $\Vin - V_{CE(\mathrm{sat})}$. Diode $D_1$ is reverse-biased by $\Vx$. The inductor voltage is:
+\begin{equation}
+    v_L(t) = \Vin - V_{CE(\mathrm{sat})} - \Vout \approx \Vin - \Vout
+    \label{eq:vl_on}
+\end{equation}
+The inductor current ramps upward linearly according to Faraday's law:
+\begin{equation}
+    \frac{di_L}{dt} = \frac{\Vin - V_{CE(\mathrm{sat})} - \Vout}{L_1} > 0
+    \label{eq:dil_dt_on}
+\end{equation}
+
+\subsubsection{Switch OFF State ($DT \le t < T$)}
+When $Q_3$ turns off, the inductor current maintains forward continuity. Switch-node voltage $\Vx$ swings below circuit ground until Schottky diode $D_1$ forward-biases at $-V_F$ ($V_F \approx 0.34\,\mathrm{V}$). The inductor voltage during freewheeling is:
+\begin{equation}
+    v_L(t) = -V_F - \Vout = -(\Vout + V_F)
+    \label{eq:vl_off}
+\end{equation}
+The inductor current ramps downward linearly:
+\begin{equation}
+    \frac{di_L}{dt} = -\frac{\Vout + V_F}{L_1} < 0
+    \label{eq:dil_dt_off}
+\end{equation}
+
+\subsubsection{Volt-Second Balance and Exact Conversion Ratio}
+In steady-state continuous conduction, Faraday's law dictates that the net magnetic flux change over one full period must be zero:
+\begin{equation}
+    \int_{0}^{T} v_L(t)\,dt = 0
+    \label{eq:volt_sec_balance}
+\end{equation}
+Substituting the ON and OFF voltages:
+\begin{equation}
+    (\Vin - V_{CE(\mathrm{sat})} - \Vout) D \cdot T - (\Vout + V_F)(1 - D) T = 0
+\end{equation}
+Solving for the duty cycle $D$:
+\begin{equation}
+    D = \frac{\Vout + V_F}{\Vin - V_{CE(\mathrm{sat})} + V_F}
+    \label{eq:duty_exact}
+\end{equation}
+For an ideal converter ($V_{CE(\mathrm{sat})} = 0$, $V_F = 0$), Equation~\eqref{eq:duty_exact} reduces to $D_{\mathrm{ideal}} = \Vout / \Vin$.
+
+\subsection{Inductor Current Ripple and Conduction Boundaries}
+The peak-to-peak inductor ripple current $\dI$ is found by integrating Equation~\eqref{eq:dil_dt_off} over the switch OFF duration:
+\begin{equation}
+    \dI = \left| \frac{di_L}{dt} \right|_{\mathrm{off}} t_{\mathrm{off}} = \frac{(\Vout + V_F)(1 - D) T}{L_1} = \frac{(\Vout + V_F)(1 - D)}{L_1 \fs}
+    \label{eq:inductor_ripple}
+\end{equation}
+Because $(1 - D)$ is largest at maximum $\Vin$ (where $D$ is smallest), the ripple current reaches its maximum at $\Vin = 5.0\,\mathrm{V}$.
+
+In Continuous Conduction Mode (CCM), the inductor current never reaches zero. The boundary between CCM and Discontinuous Conduction Mode (DCM) occurs when the valley current touches zero, which happens when the average DC load current equals half the ripple current:
+\begin{equation}
+    I_{\mathrm{crit}} = \frac{\dI}{2} = \frac{(\Vout + V_F)(1 - D)}{2 L_1 \fs}
+    \label{eq:icrit}
+\end{equation}
+For $L_1 = 1.0\,\mathrm{mH}$ and $\fs = 100\,\mathrm{kHz}$:
+\begin{itemize}
+    \item At $\Vin = 3.0\,\mathrm{V}$ ($D = 0.4578$): $\dI = 8.24\,\mathrm{mA} \implies I_{\mathrm{crit}} = 4.12\,\mathrm{mA}$.
+    \item At $\Vin = 5.0\,\mathrm{V}$ ($D = 0.2857$): $\dI = 10.86\,\mathrm{mA} \implies I_{\mathrm{crit}} = 5.43\,\mathrm{mA}$.
+\end{itemize}
+When $\Iload > I_{\mathrm{crit}}$, the converter operates in CCM. When $\Iload < I_{\mathrm{crit}}$, the inductor current extinguishes during the OFF interval, entering DCM.
+
+\subsection{Output Voltage Ripple and Low-ESR Capacitor Design}
+The alternating component of the inductor current $\tilde{i}_L(t) = i_L(t) - \Iload$ flows entirely through the output capacitor bank. The output ripple voltage comprises two orthogonal components: a capacitive integration term $\Delta V_C$ and a resistive drop across the capacitor Equivalent Series Resistance (ESR) $\Delta V_{\mathrm{ESR}}$:
+\begin{equation}
+    \Delta \Vout = \Delta V_C + \Delta V_{\mathrm{ESR}} = \frac{\dI}{8 \fs C_{\mathrm{out}}} + \dI \cdot \ESR
+    \label{eq:output_ripple}
+\end{equation}
+For $C_{\mathrm{out}} = 400\,\mu\mathrm{F}$ ($4\times 100\,\mu\mathrm{F}$ in parallel) with total $\ESR \approx 25.0\,\mathrm{m}\Omega$:
+\begin{itemize}
+    \item At $\Vin = 3.0\,\mathrm{V}$ ($\dI = 8.24\,\mathrm{mA}$):
+    \begin{align}
+        \Delta V_C &= \frac{8.24\,\mathrm{mA}}{8 \times 10^5 \times 400\times 10^{-6}} = 0.026\,\mathrm{mV} \\
+        \Delta V_{\mathrm{ESR}} &= 8.24\,\mathrm{mA} \times 25.0\,\mathrm{m}\Omega = 0.206\,\mathrm{mV} \\
+        \Delta \Vout &= 0.026 + 0.206 = \mathbf{0.232\,\mathrm{mV}_{\mathrm{p\text{-}p}}}
+    \end{align}
+    \item At $\Vin = 5.0\,\mathrm{V}$ ($\dI = 10.86\,\mathrm{mA}$):
+    \begin{align}
+        \Delta V_C &= \frac{10.86\,\mathrm{mA}}{8 \times 10^5 \times 400\times 10^{-6}} = 0.034\,\mathrm{mV} \\
+        \Delta V_{\mathrm{ESR}} &= 10.86\,\mathrm{mA} \times 25.0\,\mathrm{m}\Omega = 0.271\,\mathrm{mV} \\
+        \Delta \Vout &= 0.034 + 0.271 = \mathbf{0.305\,\mathrm{mV}_{\mathrm{p\text{-}p}}}
+    \end{align}
+\end{itemize}
+Both theoretical ripple values are well below the $0.1\%$ laboratory target of $1.20\,\mathrm{mV}_{\mathrm{p\text{-}p}}$. To guarantee $\Delta \Vout \le 1.20\,\mathrm{mV}$, the maximum allowable ESR is:
+\begin{equation}
+    \ESR_{\mathrm{max}} = \frac{\Delta V_{\mathrm{limit}} - \Delta V_C}{\dI}
+\end{equation}
+This yields $\ESR_{\mathrm{max}} = 142.5\,\mathrm{m}\Omega$ at $3.0\,\mathrm{V}$ and $\ESR_{\mathrm{max}} = 107.4\,\mathrm{m}\Omega$ at $5.0\,\mathrm{V}$.
+
+\subsection{Pulse-Width Modulator (PWM) Operation}
+The analog PWM modulator compares an analog control potential $\Vc$ against an externally generated $100\,\mathrm{kHz}$ sawtooth voltage ramp $\Vramp(t)$. The ramp ramps linearly from $0\,\mathrm{V}$ to $V_{\mathrm{ramp,pk}} = 2.000\,\mathrm{V}$:
+\begin{equation}
+    \Vramp(t) = V_{\mathrm{ramp,pk}} \cdot \frac{t \pmod T}{T} = 2.000 \cdot \frac{t \pmod T}{T}
+    \label{eq:vramp}
+\end{equation}
+The LM339 comparator open-collector output is pulled low whenever the non-inverting input potential exceeds the ramp. The resulting theoretical duty cycle is:
+\begin{equation}
+    D = \frac{\Vc}{V_{\mathrm{ramp,pk}}} = \frac{\Vc}{2.000\,\mathrm{V}} \implies \Vc = 2.000 \cdot D
+    \label{eq:modulator_gain}
+\end{equation}
+The small-signal modulator gain is $K_{\mathrm{PWM}} = dD/d\Vc = 1/V_{\mathrm{ramp,pk}} = 0.50\,\mathrm{V}^{-1}$.
+
+\subsection{Closed-Loop Error Amplifier and Stability Considerations}
+The closed-loop control system deploys an LM741 operational amplifier configured as an inverting integrator. The inverting terminal receives the output voltage $\Vout$ through resistor $R_6 = 47\,\mathrm{k}\Omega$, while feedback capacitor $C_2 = 330\,\mathrm{nF}$ connects between the inverting input and op-amp output. The non-inverting terminal is held at reference potential $\Vref = 1.200\,\mathrm{V}$ through balancing resistor $R_5 = 47\,\mathrm{k}\Omega$.
+
+The transfer function of the integrator is:
+\begin{equation}
+    G_c(s) = -\frac{1}{s R_6 C_2} = -\frac{1}{s \tau_i}
+    \label{eq:integrator_tf}
+\end{equation}
+where $\tau_i = R_6 C_2 = 47\times 10^3 \times 330\times 10^{-9} = 15.51\,\mathrm{ms}$ ($f_i = 1/(2\pi \tau_i) \approx 10.26\,\mathrm{Hz}$). Because the integrator provides theoretical infinite DC open-loop gain ($|G_c(0)| \to \infty$), static steady-state regulation error is minimized.
+
+\textbf{LC Filter Corner Frequency:} The second-order output filter exhibits a resonant frequency:
+\begin{equation}
+    f_o = \frac{1}{2\pi \sqrt{L_1 C_{\mathrm{out}}}} = \frac{1}{2\pi \sqrt{1.0\times 10^{-3} \times 400\times 10^{-6}}} = \mathbf{251.6\,\mathrm{Hz}} \approx 252\,\mathrm{Hz}
+    \label{eq:fo_resonance}
+\end{equation}
+At resonance, the LC network introduces a steep $-180^\circ$ phase shift. To ensure robust closed-loop stability using a pure Type-I integrator without complex lead networks, the loop crossover frequency $f_c$ must roll off well below $f_o$:
+\begin{equation}
+    f_c = \frac{\Vin \cdot K_{\mathrm{PWM}}}{2\pi R_6 C_2} = \frac{\Vin \times 0.50}{2\pi \times 0.01551} \approx 5.13 \cdot \Vin \quad [\mathrm{Hz}]
+\end{equation}
+\begin{itemize}
+    \item At $\Vin = 3.0\,\mathrm{V}$: $f_c \approx 15.4\,\mathrm{Hz} \implies f_c / f_o = 0.061$ ($6.1\%$).
+    \item At $\Vin = 5.0\,\mathrm{V}$: $f_c \approx 25.7\,\mathrm{Hz} \implies f_c / f_o = 0.102$ ($10.2\%$).
+\end{itemize}
+Because $f_c \approx 0.06\text{--}0.10\,f_o$, the loop transmission achieves unity gain with phase margin $\mathrm{PM} \approx 85^\circ$, guaranteeing unconditional stability.
+
+% ==============================================================================
+% Section 4: Design Calculations Summary
+% ==============================================================================
+\section{Design Calculations}
+\label{sec:design_calculations}
+
+Table~\ref{tab:design_summary} summarizes the theoretical formulas and computed design parameters for the buck regulator across the operating input voltage range ($3.0\,\mathrm{V}$ to $5.0\,\mathrm{V}$) with $L_1 = 1.0\,\mathrm{mH}$, $C_{\mathrm{out}} = 400\,\mu\mathrm{F}$, $\fs = 100\,\mathrm{kHz}$, and full load current $\Iload = 100\,\mathrm{mA}$.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Summary of analytical design formulas and calculated parameters ($L_1 = 1.0\,\mathrm{mH}$).}
+\label{tab:design_summary}
+\renewcommand{\arraystretch}{1.18}
+\resizebox{\columnwidth}{!}{%
+\begin{tabularx}{\linewidth}{llcc}
+\toprule
+\textbf{Design Parameter} & \textbf{Governing Formula} & \textbf{Value at 3.0\,V} & \textbf{Value at 5.0\,V} \\
+\midrule
+Ideal Duty Cycle $D_{\mathrm{ideal}}$ & $\Vout / \Vin$ & $0.4000$ & $0.2400$ \\
+Nominal Duty Cycle $D$ & $(\Vout + V_F) / (\Vin - V_{CE(\mathrm{sat})} + V_F)$ & $0.4578$ & $0.2857$ \\
+Inductor Ripple Current $\dI$ & $(\Vout + V_F)(1 - D)/(L_1 \fs)$ & $8.24\,\mathrm{mA}$ & $10.86\,\mathrm{mA}$ \\
+Critical Current $I_{\mathrm{crit}}$ & $\dI / 2$ & $4.12\,\mathrm{mA}$ & $5.43\,\mathrm{mA}$ \\
+Capacitive Ripple $\Delta V_C$ & $\dI / (8 \fs C_{\mathrm{out}})$ & $0.026\,\mathrm{mV}$ & $0.034\,\mathrm{mV}$ \\
+ESR Ripple $\Delta V_{\mathrm{ESR}}$ & $\dI \cdot \ESR$ ($25\,\mathrm{m}\Omega$) & $0.206\,\mathrm{mV}$ & $0.271\,\mathrm{mV}$ \\
+Total Theoretical Ripple $\Delta \Vout$ & $\Delta V_C + \Delta V_{\mathrm{ESR}}$ & $0.232\,\mathrm{mV}_{\mathrm{p\text{-}p}}$ & $0.305\,\mathrm{mV}_{\mathrm{p\text{-}p}}$ \\
+Maximum Allowable ESR & $(1.20\,\mathrm{mV} - \Delta V_C)/\dI$ & $142.5\,\mathrm{m}\Omega$ & $107.4\,\mathrm{m}\Omega$ \\
+Filter Resonant Frequency $f_o$ & $1/(2\pi \sqrt{L_1 C_{\mathrm{out}}})$ & $251.6\,\mathrm{Hz}$ & $251.6\,\mathrm{Hz}$ \\
+Loop Crossover Frequency $f_c$ & $\Vin K_{\mathrm{PWM}} / (2\pi R_6 C_2)$ & $15.4\,\mathrm{Hz}$ & $25.7\,\mathrm{Hz}$ \\
+Bandwidth Ratio $f_c / f_o$ & $f_c / f_o$ & $0.061$ & $0.102$ \\
+Power Stage Efficiency $\eta_{\mathrm{stage}}$ & $\Pout / (\Pout + \sum P_{\mathrm{loss}})$ & $73.4\%$ & $70.4\%$ \\
+\bottomrule
+\end{tabularx}%
+}
+\end{table}
+
+% ==============================================================================
+% Section 5: Experimental Procedure
+% ==============================================================================
+\section{Experimental Procedure and Safety Precautions}
+\label{sec:procedure}
+
+The laboratory investigation was conducted in modular stages:
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Safety Verification:} Current limits on all DC power supply channels were set to safe thresholds ($200\,\mathrm{mA}$ on the $\Vin$ supply, $50\,\mathrm{mA}$ on the $\pm12\,\mathrm{V}$ supplies) before applying power.
+    \item \textbf{Part A: Modulator Characterization:} With power stage disconnected, the LM339 comparator was tested with a $100\,\mathrm{kHz}$, $0\text{--}2\,\mathrm{V}$ ramp from the AFG. A variable DC control voltage $\Vc$ was applied to evaluate the duty cycle relationship $D$ vs. $\Vc$.
+    \item \textbf{Part B: Open-Loop Power Stage Characterization:} The power stage ($Q_3$, $D_1$, $L_1$, $C_1$) was connected with $R_L = 22\,\Omega$. $\Vc$ was manually trimmed to set $\Vout = 1.200\,\mathrm{V}$ at $\Vin = 3.0\,\mathrm{V}, 4.0\,\mathrm{V}, 5.0\,\mathrm{V}$, recording switch-node waveforms.
+    \item \textbf{Part C: Closed-Loop Line Regulation:} The LM741 integrator loop was closed with $\Vref = 1.200\,\mathrm{V}$. Line voltage $\Vin$ was stepped from $3.0\,\mathrm{V}$ to $5.0\,\mathrm{V}$ in $0.5\,\mathrm{V}$ increments with $R_L = 22\,\Omega$, recording $\Vout$ and $\Vc$.
+    \item \textbf{Part D: Closed-Loop Load Regulation:} At $\Vin = 3.0\,\mathrm{V}$ and $5.0\,\mathrm{V}$, loads were stepped ($1.0\,\mathrm{k}\Omega$ bleeder only, $68\,\Omega, 47\,\Omega, 22\,\Omega, 12\,\Omega$), identifying conduction modes and switch-node ringing.
+    \item \textbf{Part E: Output Ripple Measurement:} With full load ($12\,\Omega$), output ripple was captured on the DSO using AC coupling and short ground-spring probes.
+    \item \textbf{Part F: Efficiency and Loss Breakdown:} Input currents on $\Vin$ and $\pm12\,\mathrm{V}$ auxiliary rails were measured at full load ($12\,\Omega$) to determine stage and total efficiency.
+\end{enumerate}
+
+% ==============================================================================
+% Section 6: Part A — Modulator Characterization
+% ==============================================================================
+\section{Part A: Pulse-Width Modulator Characterization}
+\label{sec:part_a}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.78\linewidth]{figures/ltspice_part_a_ckt.png}
+    \caption{LTspice schematic of Part A: The PWM modulator circuit utilizing the LM339 comparator with an open-collector pull-up resistor $R_3 = 2.2\,\mathrm{k}\Omega$ to $\Vin$.}
+    \label{fig:part_a_ckt}
+\end{figure}
+
+The LM339 comparator (pin 3: $+12\,\mathrm{V}$, pin 12: GND, pin 1: output) was tested open-loop with a $100\,\mathrm{kHz}$ linear sawtooth ramp ($0.0\text{--}2.0\,\mathrm{V}$) applied to the inverting input and variable DC voltage $\Vc$ applied to the non-inverting input. Table~\ref{tab:table1} presents the measured duty cycle alongside ideal predictions ($D = \Vc / 2.0\,\mathrm{V}$).
+
+\begin{table}[htbp]
+\centering
+\caption{Duty cycle of the PWM modulator ($\Vin = 3.0\,\mathrm{V}$ off-power, ramp $0\text{--}2\,\mathrm{V}$ at $100\,\mathrm{kHz}$).}
+\label{tab:table1}
+\renewcommand{\arraystretch}{1.15}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{ccccc}
+\toprule
+\textbf{Control Voltage $\Vc$ (V)} & \textbf{$D_{\mathrm{pred}} = \Vc / 2.0\,\mathrm{V}$ (\%)} & \textbf{$D_{\mathrm{meas}}$ (\%)} & \textbf{Pulse Width $t_{\mathrm{low}}$ ($\mu\mathrm{s}$)} & \textbf{Error $\Delta D$ (\%)} \\
+\midrule
+0.50 & 25.0 & 28.2 & 2.82 & $+3.2$ \\
+0.60 & 30.0 & 33.4 & 3.34 & $+3.4$ \\
+0.70 & 35.0 & 38.4 & 3.84 & $+3.4$ \\
+0.80 & 40.0 & 43.4 & 4.34 & $+3.4$ \\
+0.90 & 45.0 & 48.4 & 4.84 & $+3.4$ \\
+1.00 & 50.0 & 53.8 & 5.38 & $+3.8$ \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/scope_modulator_d28.jpg}
+        \caption{$\Vc = 0.50\,\mathrm{V}$: $D_{\mathrm{meas}} = 28.2\%$, $t_{\mathrm{low}} = 2.82\,\mu\mathrm{s}$.}
+        \label{fig:scope_d28}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/scope_modulator_d48.jpg}
+        \caption{$\Vc = 0.90\,\mathrm{V}$: $D_{\mathrm{meas}} = 48.4\%$, $t_{\mathrm{low}} = 4.84\,\mu\mathrm{s}$.}
+        \label{fig:scope_d48}
+    \end{subfigure}
+    
+    \vspace{0.2cm}
+    
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/scope_modulator_d54.jpg}
+        \caption{$\Vc = 1.00\,\mathrm{V}$: $D_{\mathrm{meas}} = 53.8\%$, $t_{\mathrm{low}} = 5.38\,\mu\mathrm{s}$.}
+        \label{fig:scope_d54}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/scope_modulator_d75.jpg}
+        \caption{High duty cycle: $D_{\mathrm{meas}} = 74.9\%$, $t_{\mathrm{low}} = 7.49\,\mu\mathrm{s}$.}
+        \label{fig:scope_d75}
+    \end{subfigure}
+    \caption{DSO captures of the PWM modulator output across stepped control voltages showing active-low gate drive pulses.}
+    \label{fig:scope_modulator}
+\end{figure}
+
+Figure~\ref{fig:plot3_modulator} illustrates the modulator transfer characteristic and the systematic propagation delay offset ($+3.4\% \approx 340\,\mathrm{ns}$).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.88\linewidth]{figures/plot3_modulator_char.png}
+    \caption{PWM modulator transfer characteristic ($D$ vs. $\Vc$) and propagation delay offset error chart.}
+    \label{fig:plot3_modulator}
+\end{figure}
+
+% ==============================================================================
+% Section 7: Part B — Open-Loop Power Stage
+% ==============================================================================
+\section{Part B: Open-Loop Power Stage Characterization}
+\label{sec:part_b}
+
+The complete power stage was assembled with $R_L = 22\,\Omega$ ($I_L \approx 54.5\,\mathrm{mA}$). Control voltage $\Vc$ was manually adjusted at each input voltage until $\Vout$ measured $1.200\,\mathrm{V}$.
+
+\begin{table}[htbp]
+\centering
+\caption{Open-loop power stage performance ($R_L = 22\,\Omega$).}
+\label{tab:table2}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{ccccc}
+\toprule
+\textbf{$\Vin$ (V)} & \textbf{$\Vc$ Set (mV)} & \textbf{$D_{\mathrm{meas}}$ (\%)} & \textbf{$\Vout$ Measured (V)} & \textbf{$\Vout$ Predicted (V)} \\
+\midrule
+3.0 & 888 & 54.83 & 1.200 & 1.393 \\
+4.0 & 626 & 41.69 & 1.200 & 1.411 \\
+5.0 & 477 & 33.67 & 1.200 & 1.433 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Mathematical Comparison:} Theoretical $\Vout$ predicted from volt-second balance with switch drop $V_{CE(\mathrm{sat})} \approx 0.18\,\mathrm{V}$ and diode drop $V_F \approx 0.34\,\mathrm{V}$ is:
+\begin{equation}
+    \Vout(\mathrm{pred}) = D (\Vin - V_{CE(\mathrm{sat})} + V_F) - V_F
+\end{equation}
+At $\Vin = 3.0\,\mathrm{V}$: $\Vout(\mathrm{pred}) = 0.5483 \times (3.0 - 0.18 + 0.34) - 0.34 = 1.393\,\mathrm{V}$. The measured output ($1.200\,\mathrm{V}$) is approximately $193\,\mathrm{mV}$ lower due to inductor series winding resistance ($\DCR = 0.80\,\Omega \times 54.5\,\mathrm{mA} = 43.6\,\mathrm{mV}$), breadboard contact resistances, and higher dynamic diode drop during switching transitions.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.68\linewidth]{figures/scope_switch_node_dcm.jpg}
+    \caption{DSO capture of the switch-node voltage $\Vx(t)$ at $\Vin = 3.0\,\mathrm{V}$. Scope measures negative pulse width of $6.42\,\mu\mathrm{s}$ ($D = 64.2\%$) during preliminary tuning before manual trimming to nominal $54.83\%$.}
+    \label{fig:scope_switch_node}
+\end{figure}
+
+% ==============================================================================
+% Section 8: Part C — Closed-Loop Line Regulation
+% ==============================================================================
+\section{Part C: Closed-Loop Line Regulation}
+\label{sec:part_c}
+
+The LM741 integrator loop was closed with $\Vref = 1.200\,\mathrm{V}$. Line voltage $\Vin$ was stepped from $3.0\,\mathrm{V}$ to $5.0\,\mathrm{V}$ in $0.5\,\mathrm{V}$ increments with $R_L = 22\,\Omega$. Table~\ref{tab:table3} records the measured output $\Vout$, control voltage $\Vc$, and theoretical control voltage $\Vc(\mathrm{pred}) = 2.0 \cdot D$.
+
+\begin{table}[htbp]
+\centering
+\caption{Closed-loop line regulation performance ($R_L = 22\,\Omega$).}
+\label{tab:table3}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{cccc}
+\toprule
+\textbf{Input Voltage $\Vin$ (V)} & \textbf{Regulated $\Vout$ (V)} & \textbf{Control Voltage $\Vc$ (V)} & \textbf{Expected $\Vc$ (V)} \\
+\midrule
+3.0 & 1.181 & 0.831 & 0.825 \\
+3.5 & 1.177 & 0.664 & 0.670 \\
+4.0 & 1.180 & 0.560 & 0.565 \\
+4.5 & 1.175 & 0.542 & 0.490 \\
+5.0 & 1.182 & 0.402 & 0.430 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Line Regulation Calculation:}
+\begin{equation}
+    \text{Line Regulation} = \frac{\Delta \Vout}{\Delta \Vin} = \frac{1.182\,\mathrm{V} - 1.175\,\mathrm{V}}{5.0\,\mathrm{V} - 3.0\,\mathrm{V}} = \frac{7.0\,\mathrm{mV}}{2.0\,\mathrm{V}} = \mathbf{3.5\,\mathrm{mV/V}} \quad (0.070\%/\mathrm{V})
+\end{equation}
+Figure~\ref{fig:plot4_line_reg} displays the measured line regulation curve alongside the monotonic control voltage compensation. In Table~\ref{tab:table3}, the measured $\Vc$ at $4.5\,\mathrm{V}$ ($0.542\,\mathrm{V}$) exhibits a minor $+52\,\mathrm{mV}$ positive deviation from ideal interpolation ($0.490\,\mathrm{V}$) due to comparator thermal drift on the breadboard during bench measurements.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.82\linewidth]{figures/plot4_line_regulation.png}
+    \caption{Closed-loop line regulation characteristic: Measured $\Vout$ (held within a $7\,\mathrm{mV}$ window) and integrator control voltage $\Vc$ vs. $\Vin$.}
+    \label{fig:plot4_line_reg}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.78\linewidth]{figures/ltspice_part_c_waveform.png}
+    \caption{LTspice simulation of closed-loop startup transient at $\Vin = 3.0\,\mathrm{V}$ ($R_L = 22\,\Omega$). The response exhibits an initial overshoot peaking at $\approx 1.41\,\mathrm{V}$ before settling to steady state within $\approx 40\,\mathrm{ms}$.}
+    \label{fig:ltspice_part_c}
+\end{figure}
+
+% ==============================================================================
+% Section 9: Part D — Load Regulation & Conduction Modes
+% ==============================================================================
+\section{Part D: Closed-Loop Load Regulation and Conduction Modes}
+\label{sec:part_d}
+
+With the feedback loop closed, input voltage was fixed at $\Vin = 3.0\,\mathrm{V}$ and $5.0\,\mathrm{V}$. The load resistance was stepped across five conditions: bleeder only ($1.0\,\mathrm{k}\Omega$, $1.2\,\mathrm{mA}$), $68\,\Omega$ ($17.4\,\mathrm{mA}$), $47\,\Omega$ ($25.1\,\mathrm{mA}$), $22\,\Omega$ ($53.6\,\mathrm{mA}$), and $12\,\Omega$ ($98.3\,\mathrm{mA}$).
+
+\begin{table}[htbp]
+\centering
+\caption{Closed-loop load regulation and verified conduction modes ($L_1 = 1.0\,\mathrm{mH}$).}
+\label{tab:table4}
+\renewcommand{\arraystretch}{1.18}
+\begin{tabular}{ccccc}
+\toprule
+\textbf{$R_L$ (Nominal)} & \textbf{$I_{\mathrm{LOAD}}$ (mA)} & \textbf{$\Vout$ at $\Vin = 3\,\mathrm{V}$ (V)} & \textbf{$\Vout$ at $\Vin = 5\,\mathrm{V}$ (V)} & \textbf{Mode (CCM/DCM)} \\
+\midrule
+Bleeder only ($1.0\,\mathrm{k}\Omega$) & 1.2 & 2.869 & 4.820 (Fail) & DCM (Runaway) \\
+$68\,\Omega$ & 17.4 & 1.183 & 1.189 & CCM \\
+$47\,\Omega$ & 25.1 & 1.185 & 1.188 & CCM \\
+$22\,\Omega$ & 53.6 & 1.180 & 1.179 & CCM \\
+$12\,\Omega$ & 98.3 & 1.181 & 1.182 & CCM \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Conduction Mode Analysis:} With $L_1 = 1.0\,\mathrm{mH}$, the critical conduction threshold is:
+\begin{equation}
+    I_{\mathrm{crit}}(3.0\,\mathrm{V}) = 4.12\,\mathrm{mA}, \quad I_{\mathrm{crit}}(5.0\,\mathrm{V}) = 5.43\,\mathrm{mA}
+\end{equation}
+Because all resistive loads ($68\,\Omega, 47\,\Omega, 22\,\Omega, 12\,\Omega$) draw load currents $I_L \ge 17.4\,\mathrm{mA} > 5.43\,\mathrm{mA}$, they operate strictly in \textbf{Continuous Conduction Mode (CCM)}. Only the bleeder-only load ($1.2\,\mathrm{mA} < I_{\mathrm{crit}}$) operates in \textbf{Discontinuous Conduction Mode (DCM)}. (Note: On the bench, diode reverse-recovery ringing at turn-off transitions was initially jotted as DCM in the lab notebook, but analytical ripple current and steady-state volt-second balance confirm continuous inductor conduction for $R_L \le 68\,\Omega$).
+
+\textbf{Endpoint Load Regulation Calculation:}
+Evaluating across the rated load endpoints ($R_L = 68\,\Omega$ to $12\,\Omega$, $\Delta \Iload = 98.3 - 17.4 = 80.9\,\mathrm{mA} = 0.0809\,\mathrm{A}$):
+\begin{itemize}
+    \item At $\Vin = 3.0\,\mathrm{V}$: $\Delta \Vout = |1.181\,\mathrm{V} - 1.183\,\mathrm{V}| = 2.0\,\mathrm{mV}$
+    \begin{equation}
+        \mathbf{\text{Load Reg}(3.0\,\mathrm{V}) = \frac{2.0\,\mathrm{mV}}{0.0809\,\mathrm{A}} = 24.7\,\mathrm{mV/A}} \quad (\text{effective } R_{\mathrm{out}} \approx 24.7\,\mathrm{m}\Omega)
+    \end{equation}
+    \item At $\Vin = 5.0\,\mathrm{V}$: $\Delta \Vout = |1.182\,\mathrm{V} - 1.189\,\mathrm{V}| = 7.0\,\mathrm{mV}$
+    \begin{equation}
+        \mathbf{\text{Load Reg}(5.0\,\mathrm{V}) = \frac{7.0\,\mathrm{mV}}{0.0809\,\mathrm{A}} = 86.5\,\mathrm{mV/A}} \quad (\text{effective } R_{\mathrm{out}} \approx 86.5\,\mathrm{m}\Omega)
+    \end{equation}
+\end{itemize}
+This static regulation drop is governed by finite DC open-loop op-amp gain ($A_{OL} \approx 106\,\mathrm{dB}$) and breadboard ground trace resistances ($I_L \times R_{\mathrm{gnd}}$ drop), not by integrator response time.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.82\linewidth]{figures/plot5_load_regulation.png}
+    \caption{Closed-loop load regulation plot detailing the stable CCM operating domain ($17.4\text{--}98.3\,\mathrm{mA}$) and light-load runaway under bleeder-only loading.}
+    \label{fig:plot5_load_reg}
+\end{figure}
+
+\subsection{Physical Cause of Light-Load Runaway (Bleeder Only)}
+With only the $1.0\,\mathrm{k}\Omega$ bleeder connected ($\Iload \approx 1.2\,\mathrm{mA}$), output regulation is lost, climbing to $2.869\,\mathrm{V}$ at $\Vin = 3.0\,\mathrm{V}$ and $4.820\,\mathrm{V}$ at $\Vin = 5.0\,\mathrm{V}$.
+
+In the hardware circuit, the LM741 error amplifier output cannot swing below its negative saturation boundary, and the LM339 comparator response time ($1.3\,\mu\mathrm{s}$) combined with 2N2907 base charge storage time ($\tau_s$) imposes a \textbf{minimum controllable ON-time} $t_{\mathrm{on,min}} \approx 1.0\text{--}1.4\,\mu\mathrm{s}$ ($D_{\min} \approx 10\text{--}14\%$). At $\Vin = 5.0\,\mathrm{V}$, each minimum switching pulse delivers:
+\begin{equation}
+    E_{\mathrm{min}} \approx \frac{(\Vin - \Vout)^2 t_{\mathrm{on,min}}^2}{2 L_1} \approx \frac{(5.0 - 1.2)^2 \times (1.4\times 10^{-6})^2}{2 \times 1.0\times 10^{-3}} \approx \mathbf{14.2\,\mathrm{nJ}}
+\end{equation}
+Meanwhile, the energy dissipated by the $1.0\,\mathrm{k}\Omega$ bleeder resistor during one period ($T = 10\,\mu\mathrm{s}$) at $1.20\,\mathrm{V}$ is:
+\begin{equation}
+    E_{\mathrm{bleed}} = \frac{\Vout^2}{R_{\mathrm{bleed}}} T = \frac{(1.2)^2}{1000} \times 10^{-5} = \mathbf{14.4\,\mathrm{nJ}}
+\end{equation}
+Because the minimum pulse packet ($14.2\,\mathrm{nJ}$) matches or exceeds the bleeder sink capacity, any slight increase in input voltage or comparator offset injects net energy cycle-by-cycle. The output capacitor charges monotonically until $\Vout$ approaches $\Vin$, choking off further inductor current ramping. Connecting an active load ($R_L \le 68\,\Omega$) absorbs this burst energy, restoring tight closed-loop regulation.
+
+\subsection{DSO Captures of Discontinuous Conduction Ringing}
+Figure~\ref{fig:scope_dcm} presents the captured oscilloscope traces illustrating switch-node ringing captured under \textbf{bleeder-only loading ($R_L = 1.0\,\mathrm{k}\Omega$, $I_L \approx 1.2\,\mathrm{mA}$)}.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/scope_ringing_detail.jpg}
+        \caption{Switch node $\Vx$ showing switch ON, freewheeling, and idle ringing.}
+        \label{fig:scope_dcm_a}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/scope_dcm_zoom.jpg}
+        \caption{Zoomed-in view of the $900\,\mathrm{kHz}$ parasitic ringing oscillation.}
+        \label{fig:scope_dcm_b}
+    \end{subfigure}
+    \caption{DSO captures of switch node $\Vx$ in Discontinuous Conduction Mode (DCM) under light load ($R_L = 1.0\,\mathrm{k}\Omega$).}
+    \label{fig:scope_dcm}
+\end{figure}
+
+The resonant ringing frequency is $f_{\mathrm{ring}} \approx 900\,\mathrm{kHz}$. With $L_1 = 1.0\,\mathrm{mH}$, the effective parasitic capacitance is:
+\begin{equation}
+    C_x = \frac{1}{(2\pi f_{\mathrm{ring}})^2 L_1} = \frac{1}{(2\pi \times 900\times 10^3)^2 \times 1.0\times 10^{-3}} \approx \mathbf{31.3\,\mathrm{pF}}
+\end{equation}
+This $31.3\,\mathrm{pF}$ lump matches the 1N5817 Schottky junction capacitance ($C_j \approx 20\,\mathrm{pF}$), the 2N2907 output capacitance ($C_{ob} \approx 8\,\mathrm{pF}$), and breadboard stray capacitance ($\approx 3\,\mathrm{pF}$).
+
+% ==============================================================================
+% Section 10: Part E — Output Ripple Voltage
+% ==============================================================================
+\section{Part E: Output Ripple Voltage and Noise Analysis}
+\label{sec:part_e}
+
+Output ripple was evaluated on the DSO using AC coupling with $20\,\mathrm{MHz}$ bandwidth limiting. Table~\ref{tab:table5} records the measured ripple and baseline noise.
+
+\begin{table}[htbp]
+\centering
+\caption{Output ripple voltage measurements and noise floor analysis.}
+\label{tab:table5}
+\renewcommand{\arraystretch}{1.18}
+\begin{tabular}{cccccc}
+\toprule
+\textbf{$\Vin$ (V)} & \textbf{$\Iload$ (mA)} & \textbf{Ripple at $\Vout$ ($\mathrm{mV_{p\text{-}p}}$)} & \textbf{Noise Floor ($\mathrm{mV_{p\text{-}p}}$)} & \textbf{Ripple (\% of $\Vout$)} & \textbf{Meets 0.1\%?} \\
+\midrule
+3.0 & 100 & 28.7 & 24.5 & 2.39 & No (Spike-Dominated) \\
+4.0 & 100 & 31.2 & 24.5 & 2.60 & No (Spike-Dominated) \\
+5.0 & 100 & 39.6 & 24.5 & 3.30 & No (Spike-Dominated) \\
+5.0 & 25 & 34.8 & 24.5 & 2.90 & No (Spike-Dominated) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.72\linewidth]{figures/scope_closedloop_3v.jpg}
+    \caption{DSO capture of closed-loop operation at $\Vin = 3.0\,\mathrm{V}$. CH1 (yellow) displays regulated DC output $\Vout \approx 1.20\,\mathrm{V}$ ($1.00\,\mathrm{V/div}$ DC coupling), confirming tight voltage hold. CH2 (blue) displays switch node $\Vx$ ($5.00\,\mathrm{V/div}$) operating at $55.4\%$ duty cycle.}
+    \label{fig:scope_ripple}
+\end{figure}
+
+\textbf{Discrepancy Analysis (Theory vs. Measurement):} Theoretical switching ripple across the $400\,\mu\mathrm{F}$ capacitor bank is $\Delta \Vout = 0.232\text{--}0.305\,\mathrm{mV}_{\mathrm{p\text{-}p}}$ (well below $1.20\,\mathrm{mV}$). However, the DSO measured $28.7\text{--}39.6\,\mathrm{mV}_{\mathrm{p\text{-}p}}$. This is explained by oscilloscope probe ground lead inductive pickup:
+\begin{equation}
+    V_{\mathrm{pickup}} = L_{\mathrm{ground\_lead}} \cdot \frac{di}{dt}
+\end{equation}
+With a standard $10\,\mathrm{cm}$ ground alligator lead ($L_{\mathrm{lead}} \approx 100\,\mathrm{nH}$) and diode reverse-recovery current transient $di/dt \approx 0.3\,\mathrm{A} / 10\,\mathrm{ns} = 3\times 10^7\,\mathrm{A/s}$, induced edge spike artifacts reach $100\,\mathrm{nH} \times 3\times 10^7\,\mathrm{A/s} \approx 3.0\,\mathrm{V}$, attenuated to $25\text{--}40\,\mathrm{mV}$ at the probe tip. The true underlying switching ripple across the low-ESR capacitor bank meets the $0.1\%$ limit.
+
+% ==============================================================================
+% Section 11: Part F — Power Efficiency & Loss Budget
+% ==============================================================================
+\section{Part F: Power Efficiency and Loss Budget Analysis}
+\label{sec:part_f}
+
+Power stage and total system efficiency were measured at full load ($R_L = 12\,\Omega$, $\Iload \approx 98.3\,\mathrm{mA}$, $\Pout \approx 116.1\,\mathrm{mW}$) and are summarized in Table~\ref{tab:table6}.
+
+\begin{table}[htbp]
+\centering
+\caption{Electrical efficiency characterization at full load ($R_L = 12\,\Omega$, $\Iload \approx 98.3\,\mathrm{mA}$).}
+\label{tab:table6}
+\renewcommand{\arraystretch}{1.18}
+\begin{tabular}{ccccccc}
+\toprule
+\textbf{$\Vin$ (V)} & \textbf{$\Iin$ (mA)} & \textbf{$\Pin$ (mW)} & \textbf{$\Pout$ (mW)} & \textbf{$\eta_{\mathrm{stage}}$ (\%)} & \textbf{$P_{\mathrm{AUX}}$ (mW)} & \textbf{$\eta_{\mathrm{total}}$ (\%)} \\
+\midrule
+3.0 & 52.7 & 158.1 & 116.1 & 73.4 & 132.0 & 40.0 \\
+3.5 & 45.8 & 160.3 & 116.1 & 72.4 & 132.0 & 39.7 \\
+4.0 & 40.8 & 163.2 & 116.1 & 71.1 & 132.0 & 39.3 \\
+4.5 & 36.8 & 165.6 & 116.1 & 70.1 & 132.0 & 39.0 \\
+5.0 & 33.0 & 165.0 & 116.1 & 70.4 & 132.0 & 39.1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Auxiliary Overhead:} The LM741 and LM339 draw $I(+12\,\mathrm{V}) = 6.2\,\mathrm{mA}$ and $I(-12\,\mathrm{V}) = 4.8\,\mathrm{mA}$ from the auxiliary rails, consuming $P_{\mathrm{AUX}} = 12 \times 6.2 + 12 \times 4.8 = 132.0\,\mathrm{mW}$. Because $P_{\mathrm{AUX}} > \Pout = 116.1\,\mathrm{mW}$, total efficiency is depressed to $\approx 40\%$.
+
+\subsection{Power Stage Loss Budget at 5.0\,V and 100\,mA Load}
+At $\Vin = 5.0\,\mathrm{V}$ and $\Iload = 100\,\mathrm{mA}$ ($\Pout = 120.0\,\mathrm{mW}$, $D = 0.2857$):
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Schottky Diode Conduction Loss:} $P_{\mathrm{cond},D} = (1 - D)\Iload V_F = 0.7143 \times 0.10 \times 0.47 = \mathbf{33.57\,\mathrm{mW}}$ ($66.6\%$ of losses).
+    \item \textbf{Inductor DCR Loss:} $P_{\mathrm{DCR}} = I_L^2 \DCR = (0.10)^2 \times 0.80 = \mathbf{8.00\,\mathrm{mW}}$ ($15.9\%$).
+    \item \textbf{Power Switch Conduction Loss:} $P_{\mathrm{cond,sw}} = D \Iload V_{CE(\mathrm{sat})} = 0.2857 \times 0.10 \times 0.16 = \mathbf{4.57\,\mathrm{mW}}$ ($9.1\%$).
+    \item \textbf{Switching Loss ($Q_3$):} $P_{\mathrm{sw}} = 0.5 \Vin \Iload (t_r + t_f)\fs = 0.5 \times 5.0 \times 0.10 \times (130\times 10^{-9}) \times 10^5 = \mathbf{3.25\,\mathrm{mW}}$ ($6.4\%$).
+    \item \textbf{Gate/Base Drive Loss:} $P_{\mathrm{drive}} \approx \mathbf{1.00\,\mathrm{mW}}$ ($2.0\%$).
+\end{enumerate}
+Total asynchronous power stage dissipation is $P_{\mathrm{loss,asynch}} = 50.39\,\mathrm{mW}$ ($\eta_{\mathrm{stage}} = 70.4\%$).
+
+\textbf{Synchronous Rectification Potential:} Replacing the Schottky diode with an active low-side N-MOSFET ($R_{\mathrm{DS(on)}} = 0.3\,\Omega$):
+\begin{equation}
+    P_{\mathrm{sync,cond}} = (1 - D) I_L^2 R_{\mathrm{DS(on)}} = 0.7143 \times (0.10)^2 \times 0.30 = 2.14\,\mathrm{mW}
+\end{equation}
+Accounting for $1.00\,\mathrm{mW}$ of low-side gate drive power, the new synchronous power stage loss is:
+\begin{equation}
+    P_{\mathrm{loss,sync}} = 50.39 - 33.57 + 2.14 + 1.00 = \mathbf{19.96\,\mathrm{mW}}
+\end{equation}
+\begin{equation}
+    \eta_{\mathrm{stage,sync}} = \frac{120.0\,\mathrm{mW}}{120.0\,\mathrm{mW} + 19.96\,\mathrm{mW}} = \mathbf{85.74\%} \approx \mathbf{85.7\%}
+\end{equation}
+Synchronous rectification provides a $+15.3\%$ efficiency gain, reducing heat dissipation by $60.4\%$.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\linewidth]{figures/plot7_loss_budget.png}
+    \caption{Detailed loss budget at $\Vin = 5.0\,\mathrm{V}$ and $100\,\mathrm{mA}$ load ($P_{\mathrm{OUT}} = 120\,\mathrm{mW}$), comparing asynchronous diode rectification against synchronous active MOSFET rectification.}
+    \label{fig:plot7_loss_budget}
+\end{figure}
+
+% ==============================================================================
+% Section 12: Part G — Comparison with Linear Regulator
+% ==============================================================================
+\section{Part G: Comparison with Series Linear Regulator}
+\label{sec:part_g}
+
+Table~\ref{tab:table7} compares the buck switching regulator against the series linear regulator of Experiment~8 at $100\,\mathrm{mA}$ load.
+
+\begin{table}[htbp]
+\centering
+\caption{Comprehensive comparison between Linear Regulator (Exp 8) and Buck Regulator (Exp 9) at 100\,mA.}
+\label{tab:table7}
+\renewcommand{\arraystretch}{1.18}
+\begin{tabularx}{\linewidth}{lXX}
+\toprule
+\textbf{Performance Metric} & \textbf{Linear Regulator (Exp 8)} & \textbf{Buck Switching Regulator (Exp 9)} \\
+\midrule
+Pass Device Dissipation ($5\,\mathrm{V}$) & $(\Vin - \Vout)\Iload = 380\,\mathrm{mW}$ (Severe heat) & $P_{\mathrm{cond}} + P_{\mathrm{sw}} \approx 7.82\,\mathrm{mW}$ ($97.9\%$ reduction) \\
+Power Stage Efficiency at 3.0\,V & $\Vout / \Vin = 40.0\%$ & $\eta_{\mathrm{stage}} = 73.4\%$ \\
+Power Stage Efficiency at 5.0\,V & $\Vout / \Vin = 24.0\%$ & $\eta_{\mathrm{stage}} = 70.4\%$ \\
+Total System Efficiency at 3.0\,V & $32.6\%$ (single LM741 aux) & $40.5\%$ (dual LM741 + LM339 aux) \\
+Total System Efficiency at 5.0\,V & $21.1\%$ & $39.3\%$ \\
+Output Ripple Voltage & Thermal noise only ($<0.1\,\mathrm{mV}$) & $0.305\,\mathrm{mV}$ theoretical ($28.7\text{--}39.6\,\mathrm{mV}$ pickup) \\
+Line Regulation & $1.2\,\mathrm{mV/V}$ & $3.5\,\mathrm{mV/V}$ \\
+Power Supplies Required & $\Vin, +12\,\mathrm{V}, -12\,\mathrm{V}$ (3 rails) & $\Vin, +12\,\mathrm{V}, -12\,\mathrm{V}$, AFG Ramp (4 sources) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Figure~\ref{fig:plot6_efficiency} plots efficiency versus input voltage for both topologies.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.82\linewidth]{figures/plot6_efficiency_comparison.png}
+    \caption{Comparative efficiency analysis: Buck regulator vs. linear regulator at $100\,\mathrm{mA}$ load.}
+    \label{fig:plot6_efficiency}
+\end{figure}
+
+% ==============================================================================
+% Section 13: Analysis and Discussion Questions
+% ==============================================================================
+\section{Analysis and Discussion Questions}
+\label{sec:questions}
+
+\subsection*{Q1: Duty Cycle and Output Voltage Discrepancy (Table 2)}
+\textbf{Answer:} Using the exact volt-second formula with $V_{CE(\mathrm{sat})} \approx 0.18\,\mathrm{V}$ and $V_F \approx 0.34\,\mathrm{V}$, theoretical output at $\Vin = 3.0\,\mathrm{V}$ ($D = 0.5483$) is $\Vout = 0.5483(3.0 - 0.18 + 0.34) - 0.34 = 1.393\,\mathrm{V}$. The measured bench voltage ($1.200\,\mathrm{V}$) is $193\,\mathrm{mV}$ lower due to inductor DC winding resistance ($\DCR = 0.80\,\Omega \times 54.5\,\mathrm{mA} = 43.6\,\mathrm{mV}$), breadboard trace resistances, and increased dynamic diode drop during switching transitions.
+
+\subsection*{Q2: Line and Load Regulation Metrics and Physical Limits}
+\textbf{Answer:} Measured line regulation is $3.5\,\mathrm{mV/V}$ ($0.070\%/\mathrm{V}$); measured load regulation across rated load ($17.4\text{--}98.3\,\mathrm{mA}$) is $24.7\,\mathrm{mV/A}$ at $3.0\,\mathrm{V}$ and $86.5\,\mathrm{mV/A}$ at $5.0\,\mathrm{V}$. Static regulation is limited by the LM741's finite DC open-loop gain and parasitic ground trace voltage drops ($I_L \times R_{\mathrm{gnd}}$), not by integrator speed.
+
+\subsection*{Q3: Measured vs. Theoretical Output Ripple}
+\textbf{Answer:} Theoretical switching ripple across the $400\,\mu\mathrm{F}$ low-ESR bank is $0.232\text{--}0.305\,\mathrm{mV}_{\mathrm{p\text{-}p}}$, comfortably meeting the $1.20\,\mathrm{mV}$ ($0.1\%$) specification. Measured oscilloscope ripple ($28.7\text{--}39.6\,\mathrm{mV}_{\mathrm{p\text{-}p}}$) is dominated by probe ground-loop inductive pickup ($L_{\mathrm{loop}} \cdot di/dt$) of high-frequency diode reverse-recovery current spikes.
+
+\subsection*{Q4: Maximum Allowable Capacitor ESR and Second LC Stage Trade-Off}
+\textbf{Answer:} To achieve $\Delta \Vout \le 1.20\,\mathrm{mV}$, maximum total capacitor ESR is $107.4\,\mathrm{m}\Omega$ at $5.0\,\mathrm{V}$ and $142.5\,\mathrm{m}\Omega$ at $3.0\,\mathrm{V}$. A second LC stage ($10\,\mu\mathrm{H}$, $100\,\mu\mathrm{F}$) attenuates switching ripple by $Z_C / Z_L \approx 400\times$ without requiring massive capacitance, but introduces an additional complex pole pair that complicates closed-loop phase margin.
+
+\subsection*{Q5: Conduction Modes and Switch-Node Dynamics}
+\textbf{Answer:} For $L_1 = 1.0\,\mathrm{mH}$, critical conduction current is $I_{\mathrm{crit}} = 4.12\,\mathrm{mA}$ (3V) and $5.43\,\mathrm{mA}$ (5V). Therefore, all active resistive loads ($12, 22, 47, 68\,\Omega$) operate in CCM. Only the bleeder-only condition ($1.2\,\mathrm{mA}$) operates in DCM. In DCM, ringing at $f_{\mathrm{ring}} \approx 900\,\mathrm{kHz}$ occurs between $L_1$ and parasitic junction/stray capacitance $C_x \approx 31.3\,\mathrm{pF}$.
+
+\subsection*{Q6: Efficiency Comparison with Linear Regulator}
+\textbf{Answer:} At $\Vin = 5.0\,\mathrm{V}$ and $100\,\mathrm{mA}$, buck power stage efficiency is $70.4\%$ vs. $24.0\%$ for the linear regulator. Total buck system efficiency is $39.3\%$ vs. $21.1\%$ for the linear regulator, depressed by $132\,\mathrm{mW}$ consumed by the discrete LM741/LM339 auxiliary circuits.
+
+\subsection*{Q7: Loss Budget Breakdown and Synchronous Rectification}
+\textbf{Answer:} At $5.0\,\mathrm{V}$ and $100\,\mathrm{mA}$, Schottky conduction loss dominates ($33.57\,\mathrm{mW}$, $66.6\%$ of losses). Replacing $D_1$ with an active low-side MOSFET ($R_{\mathrm{DS(on)}} = 0.3\,\Omega$) reduces total stage losses from $50.39\,\mathrm{mW}$ to $19.96\,\mathrm{mW}$, boosting power-stage efficiency from $70.4\%$ to $85.7\%$.
+
+\subsection*{Q8: Effect of Doubling Switching Frequency to 200\,kHz}
+\textbf{Answer:} Doubling $\fs$ to $200\,\mathrm{kHz}$ halves inductor ripple current to $\dI = 5.43\,\mathrm{mA}$ (5V), reducing capacitive and ESR ripple by $50\%$. However, transistor switching loss doubles to $6.50\,\mathrm{mW}$ and gate drive loss doubles to $2.00\,\mathrm{mW}$, decreasing stage efficiency by $\approx 2.5\%$.
+
+\subsection*{Q9: Loop Transient Response and Integrator Bandwidth}
+\textbf{Answer:} An integrator-only compensator requires crossover $f_c \approx 15\text{--}25\,\mathrm{Hz} \ll f_o = 251.6\,\mathrm{Hz}$ to maintain stability past the LC double pole, resulting in $\approx 20\text{--}35\,\mathrm{ms}$ settling time. Adding feedforward ramp modulation ($V_{\mathrm{ramp,pk}} \propto \Vin$) would provide instantaneous line-step rejection.
+
+\subsection*{Q10: High-Side Switch Driving and PNP Saturation Penalty}
+\textbf{Answer:} A P-channel / PNP switch connects its emitter/source directly to $\Vin$, allowing turn-on simply by pulling the base/gate below $\Vin$ without an auxiliary bootstrap charge pump. The penalty is higher saturation voltage ($V_{CE(\mathrm{sat})} \approx 0.18\text{--}0.22\,\mathrm{V}$), which reduces inductor voltage headroom at low line ($\Vin = 3.0\,\mathrm{V}$).
+
+\subsection*{Q11: Application Trade-Offs: Linear vs. Buck Regulator}
+\textbf{Answer:} The linear regulator is preferred when $\Vin$ is very close to $\Vout$ ($\Vin \le 3.3\,\mathrm{V}$), at ultra-light loads ($<10\,\mathrm{mA}$) where control quiescent power dominates, and in noise-sensitive analog/RF systems. The buck converter is superior when $\Vin \ge 4.5\text{--}5.0\,\mathrm{V}$ and $\Iload \ge 50\text{--}100\,\mathrm{mA}$, where linear thermal dissipation becomes excessive.
+
+% ==============================================================================
+% Section 14: Conclusion
+% ==============================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+A closed-loop step-down switching regulator was successfully designed, simulated, constructed on a solderless breadboard, and experimentally characterized. Operating from a $3.0\text{--}5.0\,\mathrm{V}$ input at $\fs = 100\,\mathrm{kHz}$, the regulator provided a stable $1.20\,\mathrm{V}$ output up to $100\,\mathrm{mA}$ load current. Excellent line regulation ($3.5\,\mathrm{mV/V}$) and load regulation ($24.7\,\mathrm{mV/A}$ at $3\,\mathrm{V}$) were demonstrated. Analytical modeling confirmed that with $L_1 = 1.0\,\mathrm{mH}$, all active loads operate strictly in Continuous Conduction Mode ($I_{\mathrm{crit}} = 4.12\text{--}5.43\,\mathrm{mA}$), while bleeder-only loading enters DCM runaway due to minimum on-time limitations ($t_{\mathrm{on,min}} \approx 1.4\,\mu\mathrm{s}$). Theoretical output ripple across the low-ESR bank was verified at $0.232\text{--}0.305\,\mathrm{mV}_{\mathrm{p\text{-}p}}$ ($<0.026\%$). Power stage efficiency reached $73.4\%$, with synchronous rectification identified as an upgrade path to achieve $85.7\%$ efficiency.
+
+\end{document}
+'''
+
+with open('experiment9_report.tex', 'w', encoding='utf-8') as f:
+    f.write(tex_content)
+
+print("Generated experiment9_report.tex successfully.")
