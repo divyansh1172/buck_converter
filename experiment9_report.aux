@@ -6,113 +6,150 @@
 \newlabel{sec:aim}{{1}{3}{Aim and Objectives}{section.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Apparatus and Components Required}{3}{section.2}\protected@file@percent }
 \newlabel{sec:apparatus}{{2}{3}{Apparatus and Components Required}{section.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Theoretical Background and Mathematical Modeling}{3}{section.3}\protected@file@percent }
-\newlabel{sec:theory}{{3}{3}{Theoretical Background and Mathematical Modeling}{section.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Basic Buck Topology and Volt-Second Balance}{3}{subsection.3.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces List of components and test equipment utilized on the laboratory workbench.}}{4}{table.caption.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Comprehensive list of components and test equipment used on the laboratory bench.}}{4}{table.caption.1}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{tab:apparatus}{{1}{4}{List of components and test equipment utilized on the laboratory workbench}{table.caption.1}{}}
-\newlabel{fig:bench_photo_a}{{1a}{5}{Breadboard circuit assembly}{figure.caption.2}{}}
-\newlabel{sub@fig:bench_photo_a}{{a}{5}{Breadboard circuit assembly}{figure.caption.2}{}}
-\newlabel{fig:bench_photo_b}{{1b}{5}{Workbench instrumentation setup}{figure.caption.2}{}}
-\newlabel{sub@fig:bench_photo_b}{{b}{5}{Workbench instrumentation setup}{figure.caption.2}{}}
+\newlabel{tab:apparatus}{{1}{4}{Comprehensive list of components and test equipment used on the laboratory bench}{table.caption.1}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Photographs of the physical hardware setup on the laboratory workbench showing the breadboard circuit, DSO, AFG, and digital multimeters.}}{5}{figure.caption.2}\protected@file@percent }
 \newlabel{fig:bench_photos}{{1}{5}{Photographs of the physical hardware setup on the laboratory workbench showing the breadboard circuit, DSO, AFG, and digital multimeters}{figure.caption.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Complete schematic diagram of the closed-loop buck regulator, detailing the LM741 integrator, LM339 comparator, BC547/BC557 complementary totem-pole driver, 2N2907 PNP power switch, and LC output filter.}}{5}{figure.caption.3}\protected@file@percent }
-\newlabel{fig:full_schematic}{{2}{5}{Complete schematic diagram of the closed-loop buck regulator, detailing the LM741 integrator, LM339 comparator, BC547/BC557 complementary totem-pole driver, 2N2907 PNP power switch, and LC output filter}{figure.caption.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Switch ON State ($0 \le t < DT$)}{5}{subsubsection.3.1.1}\protected@file@percent }
-\newlabel{eq:vl_on}{{1}{5}{Switch ON State ($0 \le t < DT$)}{equation.1}{}}
-\newlabel{eq:dil_dt_on}{{2}{6}{Switch ON State ($0 \le t < DT$)}{equation.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Theoretical Background and Mathematical Modeling}{5}{section.3}\protected@file@percent }
+\newlabel{sec:theory}{{3}{5}{Theoretical Background and Mathematical Modeling}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Basic Buck Topology and Volt-Second Balance}{5}{subsection.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Complete schematic diagram of the closed-loop PMOS buck regulator, detailing the LM741 integrator, LM339 comparator, BC547/BC557 complementary totem-pole gate driver, high-side power switch, and LC output filter.}}{5}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:full_schematic}{{2}{5}{Complete schematic diagram of the closed-loop PMOS buck regulator, detailing the LM741 integrator, LM339 comparator, BC547/BC557 complementary totem-pole gate driver, high-side power switch, and LC output filter}{figure.caption.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Switch ON State ($0 \le t < DT$)}{6}{subsubsection.3.1.1}\protected@file@percent }
+\newlabel{eq:vl_on}{{1}{6}{Switch ON State \texorpdfstring {($0 \le t < DT$)}{(0 <= t < DT)}}{equation.1}{}}
+\newlabel{eq:dil_dt_on}{{2}{6}{Switch ON State \texorpdfstring {($0 \le t < DT$)}{(0 <= t < DT)}}{equation.2}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}Switch OFF State ($DT \le t < T$)}{6}{subsubsection.3.1.2}\protected@file@percent }
-\newlabel{eq:vl_off}{{3}{6}{Switch OFF State ($DT \le t < T$)}{equation.3}{}}
-\newlabel{eq:dil_dt_off}{{4}{6}{Switch OFF State ($DT \le t < T$)}{equation.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.3}Volt-Second Balance and Exact Conversion Ratio}{6}{subsubsection.3.1.3}\protected@file@percent }
-\newlabel{eq:volt_sec_balance}{{5}{6}{Volt-Second Balance and Exact Conversion Ratio}{equation.5}{}}
-\newlabel{eq:duty_exact}{{7}{6}{Volt-Second Balance and Exact Conversion Ratio}{equation.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Inductor Current Ripple and Conduction Boundaries}{6}{subsection.3.2}\protected@file@percent }
-\newlabel{eq:inductor_ripple}{{8}{6}{Inductor Current Ripple and Conduction Boundaries}{equation.8}{}}
-\newlabel{eq:icrit}{{9}{6}{Inductor Current Ripple and Conduction Boundaries}{equation.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Output Voltage Ripple and Low-ESR Capacitor Design}{7}{subsection.3.3}\protected@file@percent }
-\newlabel{eq:output_ripple}{{10}{7}{Output Voltage Ripple and Low-ESR Capacitor Design}{equation.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Pulse-Width Modulator (PWM) Operation}{7}{subsection.3.4}\protected@file@percent }
-\newlabel{eq:vramp}{{18}{7}{Pulse-Width Modulator (PWM) Operation}{equation.18}{}}
-\newlabel{eq:modulator_gain}{{19}{7}{Pulse-Width Modulator (PWM) Operation}{equation.19}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Closed-Loop Error Amplifier and Stability Considerations}{8}{subsection.3.5}\protected@file@percent }
-\newlabel{eq:integrator_tf}{{20}{8}{Closed-Loop Error Amplifier and Stability Considerations}{equation.20}{}}
-\newlabel{eq:fo_resonance}{{21}{8}{Closed-Loop Error Amplifier and Stability Considerations}{equation.21}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Design Calculations}{8}{section.4}\protected@file@percent }
-\newlabel{sec:design_calculations}{{4}{8}{Design Calculations}{section.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Experimental Procedure and Safety Precautions}{8}{section.5}\protected@file@percent }
-\newlabel{sec:procedure}{{5}{8}{Experimental Procedure and Safety Precautions}{section.5}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Summary of analytical design formulas and calculated parameters ($L_1 = 1.0\,\mathrm  {mH}$).}}{9}{table.caption.4}\protected@file@percent }
-\newlabel{tab:design_summary}{{2}{9}{Summary of analytical design formulas and calculated parameters ($L_1 = 1.0\,\mathrm {mH}$)}{table.caption.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Part A: Pulse-Width Modulator Characterization}{9}{section.6}\protected@file@percent }
-\newlabel{sec:part_a}{{6}{9}{Part A: Pulse-Width Modulator Characterization}{section.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Part B: Open-Loop Power Stage Characterization}{9}{section.7}\protected@file@percent }
-\newlabel{sec:part_b}{{7}{9}{Part B: Open-Loop Power Stage Characterization}{section.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces LTspice schematic of Part A: The PWM modulator circuit utilizing the LM339 comparator with an open-collector pull-up resistor $R_3 = 2.2\,\mathrm  {k}\Omega $ to $V_{\mathrm  {IN}}$.}}{10}{figure.caption.5}\protected@file@percent }
-\newlabel{fig:part_a_ckt}{{3}{10}{LTspice schematic of Part A: The PWM modulator circuit utilizing the LM339 comparator with an open-collector pull-up resistor $R_3 = 2.2\,\mathrm {k}\Omega $ to $\Vin $}{figure.caption.5}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Duty cycle of the PWM modulator ($V_{\mathrm  {IN}}= 3.0\,\mathrm  {V}$ off-power, ramp $0\text  {--}2\,\mathrm  {V}$ at $100\,\mathrm  {kHz}$).}}{10}{table.caption.6}\protected@file@percent }
-\newlabel{tab:table1}{{3}{10}{Duty cycle of the PWM modulator ($\Vin = 3.0\,\mathrm {V}$ off-power, ramp $0\text {--}2\,\mathrm {V}$ at $100\,\mathrm {kHz}$)}{table.caption.6}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Open-loop power stage performance ($R_L = 22\,\Omega $).}}{10}{table.caption.9}\protected@file@percent }
-\newlabel{tab:table2}{{4}{10}{Open-loop power stage performance ($R_L = 22\,\Omega $)}{table.caption.9}{}}
-\newlabel{fig:scope_d28}{{4a}{11}{$\Vc = 0.50\,\mathrm {V}$: $D_{\mathrm {meas}} = 28.2\%$, $t_{\mathrm {low}} = 2.82\,\mu \mathrm {s}$}{figure.caption.7}{}}
-\newlabel{sub@fig:scope_d28}{{a}{11}{$\Vc = 0.50\,\mathrm {V}$: $D_{\mathrm {meas}} = 28.2\%$, $t_{\mathrm {low}} = 2.82\,\mu \mathrm {s}$}{figure.caption.7}{}}
-\newlabel{fig:scope_d48}{{4b}{11}{$\Vc = 0.90\,\mathrm {V}$: $D_{\mathrm {meas}} = 48.4\%$, $t_{\mathrm {low}} = 4.84\,\mu \mathrm {s}$}{figure.caption.7}{}}
-\newlabel{sub@fig:scope_d48}{{b}{11}{$\Vc = 0.90\,\mathrm {V}$: $D_{\mathrm {meas}} = 48.4\%$, $t_{\mathrm {low}} = 4.84\,\mu \mathrm {s}$}{figure.caption.7}{}}
-\newlabel{fig:scope_d54}{{4c}{11}{$\Vc = 1.00\,\mathrm {V}$: $D_{\mathrm {meas}} = 53.8\%$, $t_{\mathrm {low}} = 5.38\,\mu \mathrm {s}$}{figure.caption.7}{}}
-\newlabel{sub@fig:scope_d54}{{c}{11}{$\Vc = 1.00\,\mathrm {V}$: $D_{\mathrm {meas}} = 53.8\%$, $t_{\mathrm {low}} = 5.38\,\mu \mathrm {s}$}{figure.caption.7}{}}
-\newlabel{fig:scope_d75}{{4d}{11}{High duty cycle: $D_{\mathrm {meas}} = 74.9\%$, $t_{\mathrm {low}} = 7.49\,\mu \mathrm {s}$}{figure.caption.7}{}}
-\newlabel{sub@fig:scope_d75}{{d}{11}{High duty cycle: $D_{\mathrm {meas}} = 74.9\%$, $t_{\mathrm {low}} = 7.49\,\mu \mathrm {s}$}{figure.caption.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces DSO captures of the PWM modulator output across stepped control voltages showing active-low gate drive pulses.}}{11}{figure.caption.7}\protected@file@percent }
-\newlabel{fig:scope_modulator}{{4}{11}{DSO captures of the PWM modulator output across stepped control voltages showing active-low gate drive pulses}{figure.caption.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces PWM modulator transfer characteristic ($D$ vs. $V_C$) and propagation delay offset error chart.}}{11}{figure.caption.8}\protected@file@percent }
-\newlabel{fig:plot3_modulator}{{5}{11}{PWM modulator transfer characteristic ($D$ vs. $\Vc $) and propagation delay offset error chart}{figure.caption.8}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces DSO capture of the switch-node voltage $V_X(t)$ at $V_{\mathrm  {IN}}= 3.0\,\mathrm  {V}$. Scope measures negative pulse width of $6.42\,\mu \mathrm  {s}$ ($D = 64.2\%$) during preliminary tuning before manual trimming to nominal $54.83\%$.}}{12}{figure.caption.10}\protected@file@percent }
-\newlabel{fig:scope_switch_node}{{6}{12}{DSO capture of the switch-node voltage $\Vx (t)$ at $\Vin = 3.0\,\mathrm {V}$. Scope measures negative pulse width of $6.42\,\mu \mathrm {s}$ ($D = 64.2\%$) during preliminary tuning before manual trimming to nominal $54.83\%$}{figure.caption.10}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {8}Part C: Closed-Loop Line Regulation}{12}{section.8}\protected@file@percent }
-\newlabel{sec:part_c}{{8}{12}{Part C: Closed-Loop Line Regulation}{section.8}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Closed-loop line regulation performance ($R_L = 22\,\Omega $).}}{12}{table.caption.11}\protected@file@percent }
-\newlabel{tab:table3}{{5}{12}{Closed-loop line regulation performance ($R_L = 22\,\Omega $)}{table.caption.11}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Closed-loop line regulation characteristic: Measured $V_{\mathrm  {OUT}}$ (held within a $7\,\mathrm  {mV}$ window) and integrator control voltage $V_C$ vs. $V_{\mathrm  {IN}}$.}}{13}{figure.caption.12}\protected@file@percent }
-\newlabel{fig:plot4_line_reg}{{7}{13}{Closed-loop line regulation characteristic: Measured $\Vout $ (held within a $7\,\mathrm {mV}$ window) and integrator control voltage $\Vc $ vs. $\Vin $}{figure.caption.12}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces LTspice simulation of closed-loop startup transient at $V_{\mathrm  {IN}}= 3.0\,\mathrm  {V}$ ($R_L = 22\,\Omega $). The response exhibits an initial overshoot peaking at $\approx 1.41\,\mathrm  {V}$ before settling to steady state within $\approx 40\,\mathrm  {ms}$.}}{13}{figure.caption.13}\protected@file@percent }
-\newlabel{fig:ltspice_part_c}{{8}{13}{LTspice simulation of closed-loop startup transient at $\Vin = 3.0\,\mathrm {V}$ ($R_L = 22\,\Omega $). The response exhibits an initial overshoot peaking at $\approx 1.41\,\mathrm {V}$ before settling to steady state within $\approx 40\,\mathrm {ms}$}{figure.caption.13}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {9}Part D: Closed-Loop Load Regulation and Conduction Modes}{14}{section.9}\protected@file@percent }
-\newlabel{sec:part_d}{{9}{14}{Part D: Closed-Loop Load Regulation and Conduction Modes}{section.9}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Closed-loop load regulation and verified conduction modes ($L_1 = 1.0\,\mathrm  {mH}$).}}{14}{table.caption.14}\protected@file@percent }
-\newlabel{tab:table4}{{6}{14}{Closed-loop load regulation and verified conduction modes ($L_1 = 1.0\,\mathrm {mH}$)}{table.caption.14}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}Physical Cause of Light-Load Runaway (Bleeder Only)}{14}{subsection.9.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Closed-loop load regulation plot detailing the stable CCM operating domain ($17.4\text  {--}98.3\,\mathrm  {mA}$) and light-load runaway under bleeder-only loading.}}{15}{figure.caption.15}\protected@file@percent }
-\newlabel{fig:plot5_load_reg}{{9}{15}{Closed-loop load regulation plot detailing the stable CCM operating domain ($17.4\text {--}98.3\,\mathrm {mA}$) and light-load runaway under bleeder-only loading}{figure.caption.15}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}DSO Captures of Discontinuous Conduction Ringing}{15}{subsection.9.2}\protected@file@percent }
-\newlabel{fig:scope_dcm_a}{{10a}{16}{Switch node $\Vx $ showing switch ON, freewheeling, and idle ringing}{figure.caption.16}{}}
-\newlabel{sub@fig:scope_dcm_a}{{a}{16}{Switch node $\Vx $ showing switch ON, freewheeling, and idle ringing}{figure.caption.16}{}}
-\newlabel{fig:scope_dcm_b}{{10b}{16}{Zoomed-in view of the $900\,\mathrm {kHz}$ parasitic ringing oscillation}{figure.caption.16}{}}
-\newlabel{sub@fig:scope_dcm_b}{{b}{16}{Zoomed-in view of the $900\,\mathrm {kHz}$ parasitic ringing oscillation}{figure.caption.16}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces DSO captures of switch node $V_X$ in Discontinuous Conduction Mode (DCM) under light load ($R_L = 1.0\,\mathrm  {k}\Omega $).}}{16}{figure.caption.16}\protected@file@percent }
-\newlabel{fig:scope_dcm}{{10}{16}{DSO captures of switch node $\Vx $ in Discontinuous Conduction Mode (DCM) under light load ($R_L = 1.0\,\mathrm {k}\Omega $)}{figure.caption.16}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {10}Part E: Output Ripple Voltage and Noise Analysis}{16}{section.10}\protected@file@percent }
-\newlabel{sec:part_e}{{10}{16}{Part E: Output Ripple Voltage and Noise Analysis}{section.10}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Output ripple voltage measurements and noise floor analysis.}}{16}{table.caption.17}\protected@file@percent }
-\newlabel{tab:table5}{{7}{16}{Output ripple voltage measurements and noise floor analysis}{table.caption.17}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {11}Part F: Power Efficiency and Loss Budget Analysis}{16}{section.11}\protected@file@percent }
-\newlabel{sec:part_f}{{11}{16}{Part F: Power Efficiency and Loss Budget Analysis}{section.11}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces DSO capture of closed-loop operation at $V_{\mathrm  {IN}}= 3.0\,\mathrm  {V}$. CH1 (yellow) displays regulated DC output $V_{\mathrm  {OUT}}\approx 1.20\,\mathrm  {V}$ ($1.00\,\mathrm  {V/div}$ DC coupling), confirming tight voltage hold. CH2 (blue) displays switch node $V_X$ ($5.00\,\mathrm  {V/div}$) operating at $55.4\%$ duty cycle.}}{17}{figure.caption.18}\protected@file@percent }
-\newlabel{fig:scope_ripple}{{11}{17}{DSO capture of closed-loop operation at $\Vin = 3.0\,\mathrm {V}$. CH1 (yellow) displays regulated DC output $\Vout \approx 1.20\,\mathrm {V}$ ($1.00\,\mathrm {V/div}$ DC coupling), confirming tight voltage hold. CH2 (blue) displays switch node $\Vx $ ($5.00\,\mathrm {V/div}$) operating at $55.4\%$ duty cycle}{figure.caption.18}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Electrical efficiency characterization at full load ($R_L = 12\,\Omega $, $I_{\mathrm  {LOAD}}\approx 98.3\,\mathrm  {mA}$).}}{17}{table.caption.19}\protected@file@percent }
-\newlabel{tab:table6}{{8}{17}{Electrical efficiency characterization at full load ($R_L = 12\,\Omega $, $\Iload \approx 98.3\,\mathrm {mA}$)}{table.caption.19}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.1}Power Stage Loss Budget at 5.0\,V and 100\,mA Load}{18}{subsection.11.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {12}Part G: Comparison with Series Linear Regulator}{18}{section.12}\protected@file@percent }
-\newlabel{sec:part_g}{{12}{18}{Part G: Comparison with Series Linear Regulator}{section.12}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {13}Analysis and Discussion Questions}{18}{section.13}\protected@file@percent }
-\newlabel{sec:questions}{{13}{18}{Analysis and Discussion Questions}{section.13}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Detailed loss budget at $V_{\mathrm  {IN}}= 5.0\,\mathrm  {V}$ and $100\,\mathrm  {mA}$ load ($P_{\mathrm  {OUT}} = 120\,\mathrm  {mW}$), comparing asynchronous diode rectification against synchronous active MOSFET rectification.}}{19}{figure.caption.20}\protected@file@percent }
-\newlabel{fig:plot7_loss_budget}{{12}{19}{Detailed loss budget at $\Vin = 5.0\,\mathrm {V}$ and $100\,\mathrm {mA}$ load ($P_{\mathrm {OUT}} = 120\,\mathrm {mW}$), comparing asynchronous diode rectification against synchronous active MOSFET rectification}{figure.caption.20}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Comprehensive comparison between Linear Regulator (Exp 8) and Buck Regulator (Exp 9) at 100\,mA.}}{19}{table.caption.21}\protected@file@percent }
-\newlabel{tab:table7}{{9}{19}{Comprehensive comparison between Linear Regulator (Exp 8) and Buck Regulator (Exp 9) at 100\,mA}{table.caption.21}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Comparative efficiency analysis: Buck regulator vs. linear regulator at $100\,\mathrm  {mA}$ load.}}{20}{figure.caption.22}\protected@file@percent }
-\newlabel{fig:plot6_efficiency}{{13}{20}{Comparative efficiency analysis: Buck regulator vs. linear regulator at $100\,\mathrm {mA}$ load}{figure.caption.22}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {14}Conclusion}{21}{section.14}\protected@file@percent }
-\newlabel{sec:conclusion}{{14}{21}{Conclusion}{section.14}{}}
-\gdef \@abspage@last{21}
+\newlabel{eq:vl_off}{{3}{6}{Switch OFF State \texorpdfstring {($DT \le t < T$)}{(DT <= t < T)}}{equation.3}{}}
+\newlabel{eq:dil_dt_off}{{4}{6}{Switch OFF State \texorpdfstring {($DT \le t < T$)}{(DT <= t < T)}}{equation.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.3}Volt-Second Balance Condition}{6}{subsubsection.3.1.3}\protected@file@percent }
+\newlabel{eq:volt_sec}{{5}{6}{Volt-Second Balance Condition}{equation.5}{}}
+\newlabel{eq:duty_exact}{{9}{6}{Volt-Second Balance Condition}{equation.9}{}}
+\newlabel{eq:duty_ideal}{{10}{7}{Volt-Second Balance Condition}{equation.10}{}}
+\newlabel{eq:vout_from_d}{{11}{7}{Volt-Second Balance Condition}{equation.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Inductor Ripple Current and Conduction Modes}{7}{subsection.3.2}\protected@file@percent }
+\newlabel{eq:ripple_current}{{12}{7}{Inductor Ripple Current and Conduction Modes}{equation.12}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Continuous vs. Discontinuous Conduction Mode (CCM vs. DCM)}{7}{subsubsection.3.2.1}\protected@file@percent }
+\newlabel{eq:icrit}{{14}{7}{Continuous vs. Discontinuous Conduction Mode (CCM vs. DCM)}{equation.14}{}}
+\newlabel{eq:fring}{{15}{7}{Continuous vs. Discontinuous Conduction Mode (CCM vs. DCM)}{equation.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Output Voltage Ripple Mechanics and Filtering}{8}{subsection.3.3}\protected@file@percent }
+\newlabel{eq:ripple_components}{{16}{8}{Output Voltage Ripple Mechanics and Filtering}{equation.16}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Capacitive Charging Ripple ($\Delta V_{C}$)}{8}{subsubsection.3.3.1}\protected@file@percent }
+\newlabel{eq:dvc}{{18}{8}{Capacitive Charging Ripple \texorpdfstring {($\Delta V_{C}$)}{(Delta VC)}}{equation.18}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Resistive ESR Ripple ($\Delta V_{\mathrm  {ESR}}$)}{8}{subsubsection.3.3.2}\protected@file@percent }
+\newlabel{eq:dvesr}{{19}{8}{Resistive ESR Ripple \texorpdfstring {($\Delta V_{\mathrm {ESR}}$)}{(Delta VESR)}}{equation.19}{}}
+\newlabel{eq:total_ripple}{{20}{8}{Resistive ESR Ripple \texorpdfstring {($\Delta V_{\mathrm {ESR}}$)}{(Delta VESR)}}{equation.20}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3}The 0.1\% Ripple Limit and Parallel Capacitor Bank Design}{8}{subsubsection.3.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Pulse-Width Modulator Operation}{9}{subsection.3.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces LTspice schematic of Part A: The PWM modulator circuit utilizing the LM339 comparator with $2.2\,\mathrm  {k}\Omega $ pull-up and BC547/BC557 complementary emitter-follower gate buffer.}}{9}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:part_a_schematic}{{3}{9}{LTspice schematic of Part A: The PWM modulator circuit utilizing the LM339 comparator with $2.2\,\mathrm {k}\Omega $ pull-up and BC547/BC557 complementary emitter-follower gate buffer}{figure.caption.4}{}}
+\newlabel{eq:d_modulator}{{26}{9}{Pulse-Width Modulator Operation}{equation.26}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Control Loop Architecture and Integral Compensation}{9}{subsection.3.5}\protected@file@percent }
+\newlabel{eq:fo_res}{{28}{10}{Control Loop Architecture and Integral Compensation}{equation.28}{}}
+\newlabel{eq:fc}{{31}{10}{Control Loop Architecture and Integral Compensation}{equation.31}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.1}Op-Amp Input Bias Balancing}{10}{subsubsection.3.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}High-Side P-MOSFET Gate Drive and Buffer Action}{10}{subsection.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Power Loss Budget and Efficiency Modeling}{11}{subsection.3.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Design Calculations}{12}{section.4}\protected@file@percent }
+\newlabel{sec:calculations}{{4}{12}{Design Calculations}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Operating Duty Cycle}{12}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Inductor Current Ripple and Critical Current}{12}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Output Voltage Ripple}{13}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Maximum Allowable Capacitor ESR}{13}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Loop Resonance and Integrator Crossover Frequency}{13}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Loss Budget Breakdown at $V_{\mathrm  {IN}}= 5.0\,\mathrm  {V}$, $I_{\mathrm  {LOAD}}= 100\,\mathrm  {mA}$}{13}{subsection.4.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Summary of analytical design formulas and calculated design parameters.}}{14}{table.caption.5}\protected@file@percent }
+\newlabel{tab:design_summary}{{2}{14}{Summary of analytical design formulas and calculated design parameters}{table.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Python simulation of (a) inductor ripple current $i_L(t)$ and (b) theoretical output ripple voltage $\Delta v_{\mathrm  {out}}(t)$ over two switching cycles ($20\,\mu \mathrm  {s}$), demonstrating that the theoretical ripple remains safely bounded within the $\pm 0.6\,\mathrm  {mV}$ ($\pm 0.1\%$) specification window.}}{15}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:plot1_ripple}{{4}{15}{Python simulation of (a) inductor ripple current $i_L(t)$ and (b) theoretical output ripple voltage $\Delta v_{\mathrm {out}}(t)$ over two switching cycles ($20\,\mu \mathrm {s}$), demonstrating that the theoretical ripple remains safely bounded within the $\pm 0.6\,\mathrm {mV}$ ($\pm 0.1\%$) specification window}{figure.caption.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experimental Procedure and Safety Precautions}{15}{section.5}\protected@file@percent }
+\newlabel{sec:procedure}{{5}{15}{Experimental Procedure and Safety Precautions}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Safety Limits and Operational Precautions}{15}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Part A: Pulse-Width Modulator Characterization}{16}{section.6}\protected@file@percent }
+\newlabel{sec:part_a}{{6}{16}{Part A: Pulse-Width Modulator Characterization}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Circuit Configuration and Test Method}{16}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Observation Table}{16}{subsection.6.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Table 1: Duty cycle of the PWM modulator ($V_{\mathrm  {IN}}= 3.0\,\mathrm  {V}$ off-power, ramp $0\text  {--}2\,\mathrm  {V}$ at $100\,\mathrm  {kHz}$).}}{16}{table.caption.7}\protected@file@percent }
+\newlabel{tab:table1}{{3}{16}{Table 1: Duty cycle of the PWM modulator ($\Vin = 3.0\,\mathrm {V}$ off-power, ramp $0\text {--}2\,\mathrm {V}$ at $100\,\mathrm {kHz}$)}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Waveform Captures and Bench Measurements}{17}{subsection.6.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces DSO captures of the PWM modulator. CH1 (yellow) displays the gate driver pulse; CH2 (cyan) displays the $100\,\mathrm  {kHz}$ ramp waveform.}}{17}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:scope_modulator_photos}{{5}{17}{DSO captures of the PWM modulator. CH1 (yellow) displays the gate driver pulse; CH2 (cyan) displays the $100\,\mathrm {kHz}$ ramp waveform}{figure.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Transfer Characteristic and Delay Offset Analysis}{17}{subsection.6.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces PWM modulator transfer characteristic ($D$ vs. $V_C$) and residual delay error bar chart, highlighting the consistent $+3.4\%$ offset resulting from comparator and driver switching delays.}}{18}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:plot3_modulator}{{6}{18}{PWM modulator transfer characteristic ($D$ vs. $\Vc $) and residual delay error bar chart, highlighting the consistent $+3.4\%$ offset resulting from comparator and driver switching delays}{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Part B: Open-Loop Power Stage Characterization}{18}{section.7}\protected@file@percent }
+\newlabel{sec:part_b}{{7}{18}{Part B: Open-Loop Power Stage Characterization}{section.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Circuit Arrangement and Operating Method}{18}{subsection.7.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces LTspice schematic of Part B: Open-loop power stage with fixed manual duty cycle control driving an $R_L = 22\,\Omega $ load.}}{18}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:part_b_schematic}{{7}{18}{LTspice schematic of Part B: Open-loop power stage with fixed manual duty cycle control driving an $R_L = 22\,\Omega $ load}{figure.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Observation Table}{19}{subsection.7.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Table 2: Open-loop power stage performance ($R_L = 22\,\Omega $).}}{19}{table.caption.11}\protected@file@percent }
+\newlabel{tab:table2}{{4}{19}{Table 2: Open-loop power stage performance ($R_L = 22\,\Omega $)}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Waveform Observations and Voltage Discrepancy Analysis}{19}{subsection.7.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces LTspice simulation of the open-loop buck regulator output voltage across stepped control voltages driving an $R_L = 22\,\Omega $ load.}}{19}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:part_b_waveform}{{8}{19}{LTspice simulation of the open-loop buck regulator output voltage across stepped control voltages driving an $R_L = 22\,\Omega $ load}{figure.caption.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces DSO capture of the switch-node voltage $V_X(t)$ at $V_{\mathrm  {IN}}= 3.0\,\mathrm  {V}$, showing the conduction pulse width ($6.42\,\mu \mathrm  {s}$), diode freewheeling, and ringing.}}{20}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:scope_switch_node_dcm}{{9}{20}{DSO capture of the switch-node voltage $\Vx (t)$ at $\Vin = 3.0\,\mathrm {V}$, showing the conduction pulse width ($6.42\,\mu \mathrm {s}$), diode freewheeling, and ringing}{figure.caption.13}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.1}Explanation of Discrepancy Between Measured and Ideal Predicted $V_{\mathrm  {OUT}}$}{20}{subsubsection.7.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Part C: Closed-Loop Line Regulation}{21}{section.8}\protected@file@percent }
+\newlabel{sec:part_c}{{8}{21}{Part C: Closed-Loop Line Regulation}{section.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Closed-Loop Circuit Connection}{21}{subsection.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Observation Table}{21}{subsection.8.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Table 3: Closed-loop line regulation performance ($R_L = 22\,\Omega $).}}{21}{table.caption.14}\protected@file@percent }
+\newlabel{tab:table3}{{5}{21}{Table 3: Closed-loop line regulation performance ($R_L = 22\,\Omega $)}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}Line Regulation Calculation}{21}{subsection.8.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Closed-loop line regulation characteristic: Measured $V_{\mathrm  {OUT}}$ (tightly held within a $7\,\mathrm  {mV}$ window) and the corresponding monotonic descent of integrator control voltage $V_C$ as $V_{\mathrm  {IN}}$ rises.}}{22}{figure.caption.15}\protected@file@percent }
+\newlabel{fig:plot4_line_reg}{{10}{22}{Closed-loop line regulation characteristic: Measured $\Vout $ (tightly held within a $7\,\mathrm {mV}$ window) and the corresponding monotonic descent of integrator control voltage $\Vc $ as $\Vin $ rises}{figure.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.4}Closed-Loop Startup and Simulation Waveforms}{22}{subsection.8.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces LTspice simulation of the closed-loop startup transient at $V_{\mathrm  {IN}}= 3.0\,\mathrm  {V}$ driving an $R_L = 22\,\Omega $ load, confirming smooth monotonic regulation to $1.20\,\mathrm  {V}$ without overshoot.}}{22}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:ltspice_part_c}{{11}{22}{LTspice simulation of the closed-loop startup transient at $\Vin = 3.0\,\mathrm {V}$ driving an $R_L = 22\,\Omega $ load, confirming smooth monotonic regulation to $1.20\,\mathrm {V}$ without overshoot}{figure.caption.16}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Part D: Closed-Loop Load Regulation and Conduction Modes}{22}{section.9}\protected@file@percent }
+\newlabel{sec:part_d}{{9}{22}{Part D: Closed-Loop Load Regulation and Conduction Modes}{section.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}Test Procedure}{23}{subsection.9.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}Observation Table}{23}{subsection.9.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Table 4: Closed-loop load regulation and conduction mode.}}{23}{table.caption.17}\protected@file@percent }
+\newlabel{tab:table4}{{6}{23}{Table 4: Closed-loop load regulation and conduction mode}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3}Load Regulation Calculation}{23}{subsection.9.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Closed-loop load regulation plot detailing the tightly regulated operating domain ($12\text  {--}68\,\Omega $) and the light-load runaway condition under bleeder-only loading.}}{24}{figure.caption.18}\protected@file@percent }
+\newlabel{fig:plot5_load_reg}{{12}{24}{Closed-loop load regulation plot detailing the tightly regulated operating domain ($12\text {--}68\,\Omega $) and the light-load runaway condition under bleeder-only loading}{figure.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.4}Analysis of the Light-Load Runaway Phenomenon (Bleeder Only)}{24}{subsection.9.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5}Oscilloscope Captures of Discontinuous Conduction (DCM) Ringing}{25}{subsection.9.5}\protected@file@percent }
+\newlabel{fig:scope_dcm_a}{{13a}{25}{Switch node $\Vx $ showing switch ON, diode freewheeling, and idle ringing}{figure.caption.19}{}}
+\newlabel{sub@fig:scope_dcm_a}{{a}{25}{Switch node $\Vx $ showing switch ON, diode freewheeling, and idle ringing}{figure.caption.19}{}}
+\newlabel{fig:scope_dcm_b}{{13b}{25}{Zoomed-in view of the $900\,\mathrm {kHz}$ parasitic ringing oscillation}{figure.caption.19}{}}
+\newlabel{sub@fig:scope_dcm_b}{{b}{25}{Zoomed-in view of the $900\,\mathrm {kHz}$ parasitic ringing oscillation}{figure.caption.19}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces DSO captures of switch node $V_X$ in Discontinuous Conduction Mode (DCM), demonstrating the three operational phases: (1) Switch ON, (2) Diode conduction, (3) Resonant idle ringing.}}{25}{figure.caption.19}\protected@file@percent }
+\newlabel{fig:scope_dcm}{{13}{25}{DSO captures of switch node $\Vx $ in Discontinuous Conduction Mode (DCM), demonstrating the three operational phases: (1) Switch ON, (2) Diode conduction, (3) Resonant idle ringing}{figure.caption.19}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {10}Part E: Output Ripple Voltage and Noise Analysis}{25}{section.10}\protected@file@percent }
+\newlabel{sec:part_e}{{10}{25}{Part E: Output Ripple Voltage and Noise Analysis}{section.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.1}Measurement Procedure}{25}{subsection.10.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.2}Observation Table}{25}{subsection.10.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Table 5: Output ripple voltage measurements and noise floor analysis.}}{26}{table.caption.20}\protected@file@percent }
+\newlabel{tab:table5}{{7}{26}{Table 5: Output ripple voltage measurements and noise floor analysis}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.3}In-Depth Root-Cause Analysis of Measured Ripple vs. Theory}{26}{subsection.10.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {11}Part F: Power Efficiency and Loss Budget Analysis}{26}{section.11}\protected@file@percent }
+\newlabel{sec:part_f}{{11}{26}{Part F: Power Efficiency and Loss Budget Analysis}{section.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.1}Efficiency Measurements at Full Load ($R_L = 12\,\Omega $)}{27}{subsection.11.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.2}Observation Table}{27}{subsection.11.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Table 6: Electrical efficiency characterization at full load ($R_L = 12\,\Omega $, $I_{\mathrm  {LOAD}}\approx 98.4\,\mathrm  {mA}$).}}{27}{table.caption.21}\protected@file@percent }
+\newlabel{tab:table6}{{8}{27}{Table 6: Electrical efficiency characterization at full load ($R_L = 12\,\Omega $, $\Iload \approx 98.4\,\mathrm {mA}$)}{table.caption.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.3}Loss Budget Breakdown and Synchronous Rectification Comparison}{27}{subsection.11.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Detailed loss budget at $V_{\mathrm  {IN}}= 5.0\,\mathrm  {V}$ and $100\,\mathrm  {mA}$ load ($P_{\mathrm  {OUT}} = 120\,\mathrm  {mW}$), comparing the standard asynchronous Schottky diode design with a synchronous rectifier circuit.}}{28}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:plot7_loss}{{14}{28}{Detailed loss budget at $\Vin = 5.0\,\mathrm {V}$ and $100\,\mathrm {mA}$ load ($P_{\mathrm {OUT}} = 120\,\mathrm {mW}$), comparing the standard asynchronous Schottky diode design with a synchronous rectifier circuit}{figure.caption.22}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {11.3.1}Impact of Synchronous Rectification}{28}{subsubsection.11.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.4}Efficiency Scaling Behavior Across Load Currents}{29}{subsection.11.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Comparative efficiency analysis: (a) Efficiency vs. $V_{\mathrm  {IN}}$ at $100\,\mathrm  {mA}$ load, (b) Scaling advantage vs. load current at $V_{\mathrm  {IN}}= 5.0\,\mathrm  {V}$, demonstrating that the buck regulator efficiency approaches $>85\%$ as load increases.}}{29}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:plot6_efficiency}{{15}{29}{Comparative efficiency analysis: (a) Efficiency vs. $\Vin $ at $100\,\mathrm {mA}$ load, (b) Scaling advantage vs. load current at $\Vin = 5.0\,\mathrm {V}$, demonstrating that the buck regulator efficiency approaches $>85\%$ as load increases}{figure.caption.23}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {12}Part G: Comparison with Series Linear Regulator}{29}{section.12}\protected@file@percent }
+\newlabel{sec:part_g}{{12}{29}{Part G: Comparison with Series Linear Regulator}{section.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Table 7: Comprehensive comparison between Linear Regulator (Exp 8) and Buck Regulator (Exp 9) at 100\,mA.}}{30}{table.caption.24}\protected@file@percent }
+\newlabel{tab:table7}{{9}{30}{Table 7: Comprehensive comparison between Linear Regulator (Exp 8) and Buck Regulator (Exp 9) at 100\,mA}{table.caption.24}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {13}Analysis and Discussion Questions}{30}{section.13}\protected@file@percent }
+\newlabel{sec:discussion}{{13}{30}{Analysis and Discussion Questions}{section.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Closed-loop dynamic line-step ($4.0\,\mathrm  {V} \to 5.0\,\mathrm  {V}$) and load-step ($100\,\mathrm  {mA} \leftrightarrow 25\,\mathrm  {mA}$) response, illustrating the $35\,\mathrm  {ms}$ recovery time resulting from the low crossover frequency ($f_c \approx 20\,\mathrm  {Hz}$).}}{35}{figure.caption.25}\protected@file@percent }
+\newlabel{fig:plot2_transient}{{16}{35}{Closed-loop dynamic line-step ($4.0\,\mathrm {V} \to 5.0\,\mathrm {V}$) and load-step ($100\,\mathrm {mA} \leftrightarrow 25\,\mathrm {mA}$) response, illustrating the $35\,\mathrm {ms}$ recovery time resulting from the low crossover frequency ($f_c \approx 20\,\mathrm {Hz}$)}{figure.caption.25}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Frequency scaling trade-off analysis ($50\text  {--}400\,\mathrm  {kHz}$): Inductor ripple current and theoretical output ripple reduction versus linear escalation of MOSFET switching and gate-drive dynamic losses, justifying the nominal $100\,\mathrm  {kHz}$ design point.}}{36}{figure.caption.26}\protected@file@percent }
+\newlabel{fig:plot8_freq}{{17}{36}{Frequency scaling trade-off analysis ($50\text {--}400\,\mathrm {kHz}$): Inductor ripple current and theoretical output ripple reduction versus linear escalation of MOSFET switching and gate-drive dynamic losses, justifying the nominal $100\,\mathrm {kHz}$ design point}{figure.caption.26}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {14}Conclusion}{36}{section.14}\protected@file@percent }
+\newlabel{sec:conclusion}{{14}{36}{Conclusion}{section.14}{}}
+\gdef \@abspage@last{38}

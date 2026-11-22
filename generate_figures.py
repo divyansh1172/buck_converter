@@ -222,8 +222,8 @@ def generate_plot7():
     
     categories = ['Diode / Sync\nConduction',
                   r'Inductor' + '\n' + r'DCR Loss' + '\n' + r'($R_L = 0.8\,\Omega$)',
-                  'Switch ($Q_3$)\nConduction',
-                  r'Switching' + '\n' + r'Loss ($Q_3$)' + '\n' + r'($t_r+t_f=130\,\mathrm{ns}$)',
+                  'Switch ($Q_1$)\nConduction',
+                  r'Switching' + '\n' + r'Loss ($Q_1$)' + '\n' + r'($t_r+t_f=130\,\mathrm{ns}$)',
                   'Drive\nPower']
                   
     losses_asynch = [33.57, 8.00, 4.57, 3.25, 1.00]
@@ -270,7 +270,7 @@ def generate_plot7():
         r'$\mathbf{Loss\ Budget\ Summary:}$',
         r'Asynch Total: ' + f'{tot_asynch:.2f} mW ' + r'($\eta = ' + f'{eff_asynch:.1f}' + r'\%$)',
         r'Synch Total: ' + f'{tot_synch:.2f} mW ' + r'($\eta = ' + f'{eff_synch:.1f}' + r'\%$)',
-        r'Efficiency Gain: ' + f'+{eff_synch - eff_asynch:.1f}' + r'\% points'
+        f'Efficiency Gain: +{eff_synch - eff_asynch:.1f}% points'
     ))
     props = dict(boxstyle='round,pad=0.5', facecolor='white', edgecolor='gray', alpha=0.9)
     ax.text(0.52, 0.65, textstr, transform=ax.transAxes, fontsize=9.5, verticalalignment='top', bbox=props)

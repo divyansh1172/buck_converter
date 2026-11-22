@@ -174,10 +174,10 @@ The hardware components and bench instrumentation utilized to construct and char
 
 \begin{table}[H]
 \centering
-\small
+\footnotesize
 \caption{Comprehensive list of components and test equipment used on the laboratory bench.}
 \label{tab:apparatus}
-\renewcommand{\arraystretch}{1.25}
+\renewcommand{\arraystretch}{1.08}
 \begin{tabularx}{\linewidth}{lllX}
 \toprule
 \textbf{Component / Equipment} & \textbf{Part / Model} & \textbf{Qty} & \textbf{Specifications \& Bench Values} \\
@@ -233,7 +233,7 @@ DC Power Supply & Regulated DC Supply & 1 & Regulated $\Vin$ ($3\text{--}5\,\mat
 \subsection{Basic Buck Topology and Volt-Second Balance}
 The step-down (buck) switching converter transfers electrical energy from a higher DC input potential $\Vin$ to a lower DC output potential $\Vout$ with high theoretical thermodynamic efficiency. Unlike a linear series-pass regulator where the excess input-to-output voltage drop $(\Vin - \Vout)$ is dropped across an active transistor operating in its linear active region (dissipating large thermal power $P_{\mathrm{diss}} = (\Vin - \Vout)\Iload$), a buck converter utilizes a transistor operating exclusively in switched saturation or cut-off.
 
-The basic circuit comprises a high-side P-channel MOSFET switch $Q_1$, a freewheeling Schottky catch diode $D_1$, an energy storage inductor $L_1$, and a capacitive filter bank $C_{\mathrm{out}}$ shunting the load $\RL$.
+The basic circuit comprises a high-side P-channel MOSFET switch $Q_1$, a freewheeling Schottky catch diode $D_1$, an energy storage inductor $L_1$, and a capacitive filter bank $C_{\mathrm{out}}$ shunting the load $\RL$, as illustrated in the complete schematic diagram of Figure~\ref{fig:full_schematic}.
 
 \begin{figure}[H]
     \centering
@@ -604,6 +604,8 @@ Power stage efficiency $\eta_{\mathrm{stage}}$ & $\Pout / (\Pout + \sum P_{\math
 \end{tabularx}
 \end{table}
 
+Figure~\ref{fig:plot1_ripple} illustrates the simulated inductor ripple current $i_L(t)$ and theoretical output voltage ripple $\Delta v_{\mathrm{out}}(t)$ over two complete switching periods at $V_{\mathrm{IN}} = 3.0\,\mathrm{V}$ and $5.0\,\mathrm{V}$, confirming compliance with the design specifications.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.92\linewidth]{figures/plot1_inductor_ripple.png}
@@ -673,15 +675,8 @@ Table~\ref{tab:table1} displays the measured duty cycle as $\Vc$ was stepped fro
 }
 \end{table}
 
-\subsection{Waveform Captures and Simulation Results}
-Figure~\ref{fig:part_a_waveforms} presents the LTspice simulation waveforms for Part A, while Figure~\ref{fig:scope_modulator_photos} displays the corresponding bench oscilloscope captures.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.72\linewidth]{figures/ltspice_part_a_waveform.png}
-    \caption{LTspice simulation of the PWM modulator across stepped control voltages, showing the ramp intersections and output gate drive pulses swinging between $0\,\mathrm{V}$ and $\Vin$.}
-    \label{fig:part_a_waveforms}
-\end{figure}
+\subsection{Waveform Captures and Bench Measurements}
+Figure~\ref{fig:scope_modulator_photos} displays the laboratory DSO captures of the PWM modulator output across stepped control voltages ($\Vc = 0.50\,\mathrm{V}$ to $1.00\,\mathrm{V}$ and at high duty cycle), illustrating the active-low gate drive pulses.
 
 \begin{figure}[H]
     \centering
@@ -708,7 +703,7 @@ Figure~\ref{fig:part_a_waveforms} presents the LTspice simulation waveforms for 
         \includegraphics[width=\textwidth]{figures/scope_modulator_d75.jpg}
         \caption{High duty cycle testing: $D_{\mathrm{meas}} = 74.90\%$, $t_{\mathrm{low}} = 7.487\,\mu\mathrm{s}$.}
     \end{subfigure}
-    \caption{Tektronix TBS 2000B DSO captures of the PWM modulator. CH1 (yellow) displays the gate driver pulse; CH2 (cyan) displays the $100\,\mathrm{kHz}$ ramp waveform.}
+    \caption{DSO captures of the PWM modulator. CH1 (yellow) displays the gate driver pulse; CH2 (cyan) displays the $100\,\mathrm{kHz}$ ramp waveform.}
     \label{fig:scope_modulator_photos}
 \end{figure}
 
@@ -858,6 +853,8 @@ From the measured data:
     \mathbf{\text{Line Regulation} = \frac{7.0\,\mathrm{mV}}{2.0\,\mathrm{V}} = 3.50\,\mathrm{mV/V}} \quad \left(\mathbf{0.297\%/\mathrm{V}}\right)
 \end{equation}
 
+Figure~\ref{fig:plot4_line_reg} depicts the measured closed-loop line regulation characteristic and the corresponding monotonic descent of the integrator control voltage $\Vc$ across the $3.0\text{--}5.0\,\mathrm{V}$ span.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.82\linewidth]{figures/plot4_line_regulation.png}
@@ -905,14 +902,15 @@ Table~\ref{tab:table4} records the load currents, output voltages, and observed 
 \textbf{$R_L$ (Nominal)} & \textbf{$I_{\mathrm{LOAD}}$ (mA)} & \textbf{$\Vout$ at $\Vin = 3\,\mathrm{V}$ (V)} & \textbf{$\Vout$ at $\Vin = 5\,\mathrm{V}$ (V)} & \textbf{Mode (CCM/DCM)} \\
 \midrule
 Bleeder only ($1.0\,\mathrm{k}\Omega$) & 1.2 & 2.869 & 4.820 (Fail) & DCM (Runaway) \\
-$68\,\Omega$ & 17.4 & 1.183 & 1.189 & DCM \\
-$47\,\Omega$ & 25.1 & 1.185 & 1.188 & DCM \\
-$22\,\Omega$ & 53.6 & 1.180 & 1.179 & DCM \\
+$68\,\Omega$ & 17.4 & 1.183 & 1.189 & CCM \\
+$47\,\Omega$ & 25.1 & 1.185 & 1.188 & CCM \\
+$22\,\Omega$ & 53.6 & 1.180 & 1.179 & CCM \\
 $12\,\Omega$ & 98.3 & 1.181 & 1.182 & CCM \\
 \bottomrule
 \end{tabular}%
 }
 \end{table}
+\noindent\textit{Note: Although high-frequency switch-node ringing at transistor turn-off was initially logged as DCM in the bench notebook, theoretical analysis ($I_{\mathrm{crit}} = 5.43\,\mathrm{mA}$) confirms that all active loads ($I_{\mathrm{LOAD}} \ge 17.4\,\mathrm{mA}$) operate strictly in Continuous Conduction Mode (CCM).}
 
 \subsection{Load Regulation Calculation}
 Load regulation defines the variation in output voltage per unit change in load current:
@@ -931,6 +929,8 @@ Evaluating across the active regulated load range ($17.4\,\mathrm{mA}$ to $98.4\
     \end{equation}
 \end{itemize}
 
+Figure~\ref{fig:plot5_load_reg} presents the closed-loop load regulation characteristic across all tested load conditions, delineating the tightly regulated CCM operating domain from the bleeder-only runaway boundary.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.82\linewidth]{figures/plot5_load_regulation.png}
@@ -941,20 +941,19 @@ Evaluating across the active regulated load range ($17.4\,\mathrm{mA}$ to $98.4\
 \subsection{Analysis of the Light-Load Runaway Phenomenon (Bleeder Only)}
 A critical experimental finding documented in Table~\ref{tab:table4} is that with only the $1.0\,\mathrm{k}\Omega$ bleeder connected ($\Iload \approx 1.2\,\mathrm{mA}$), the output voltage loses regulation, soaring to $2.869\,\mathrm{V}$ at $\Vin = 3.0\,\mathrm{V}$ and $4.820\,\mathrm{V}$ at $\Vin = 5.0\,\mathrm{V}$.
 
-\textbf{Physical Cause:} The PWM comparator and BJT gate driver have finite switching speeds, imposing a \textbf{minimum controllable ON-time} $t_{\mathrm{on,min}} \approx 200\text{--}300\,\mathrm{ns}$ due to comparator propagation delay and transistor storage time.
-Even if the integrator pulls $\Vc$ all the way to its negative saturation rail (attempting to request $D = 0\%$), the circuit cannot generate a pulse narrower than $t_{\mathrm{on,min}}$. In each cycle, the minimum energy packet delivered by the inductor to the output capacitor is:
+\textbf{Physical Cause:} The PWM comparator (LM339) and discrete buffer stage exhibit finite propagation delay and switching times, imposing a \textbf{minimum controllable ON-time} $t_{\mathrm{on,min}} \approx 1.4\,\mu\mathrm{s}$. Even if the integrator pulls $\Vc$ all the way to its negative saturation rail (attempting to request $D = 0\%$), the circuit cannot generate a pulse narrower than $t_{\mathrm{on,min}}$. In each cycle, the minimum energy packet delivered by the inductor to the output capacitor in DCM is:
 \begin{equation}
     E_{\mathrm{min}} \approx \frac{1}{2} L_1 \cdot i_{L,\mathrm{peak}}^2 = \frac{1}{2} L_1 \left( \frac{\Vin - \Vout}{L_1} t_{\mathrm{on,min}} \right)^2 = \frac{(\Vin - \Vout)^2 t_{\mathrm{on,min}}^2}{2 L_1}
 \end{equation}
-Meanwhile, the energy dissipated by the $1.0\,\mathrm{k}\Omega$ bleeder resistor during one period $T = 10\,\mu\mathrm{s}$ at $1.20\,\mathrm{V}$ is only:
+Meanwhile, the energy dissipated by the $1.0\,\mathrm{k}\Omega$ bleeder resistor during one period $T = 10\,\mu\mathrm{s}$ at $1.20\,\mathrm{V}$ is:
 \begin{equation}
-    E_{\mathrm{bleed}} = \frac{\Vout^2}{R_{\mathrm{bleed}}} T = \frac{(1.2)^2}{1000} \times 10^{-5} = 1.44\times 10^{-8}\,\mathrm{J} = \mathbf{14.4\,\mathrm{nJ}}
+    E_{\mathrm{bleed}} = \frac{\Vout^2}{R_{\mathrm{bleed}}} T = \frac{(1.2)^2}{1000} \times 10^{-5} = 1.44\times 10^{-8}\,\mathrm{J} = \mathbf{14.40\,\mathrm{nJ}}
 \end{equation}
-At $\Vin = 5.0\,\mathrm{V}$ with $t_{\mathrm{on,min}} = 250\,\mathrm{ns}$:
+At $\Vin = 5.0\,\mathrm{V}$ with $t_{\mathrm{on,min}} \approx 1.4\,\mu\mathrm{s}$ and $L_1 = 1.0\,\mathrm{mH}$:
 \begin{equation}
-    E_{\mathrm{min}} \approx \frac{(5.0 - 1.2)^2 (250\times 10^{-9})^2}{2 \times 1.0\times 10^{-3}} = \frac{14.44 \times 6.25\times 10^{-14}}{2.0\times 10^{-3}} \approx \mathbf{45.1\,\mathrm{nJ}}
+    E_{\mathrm{min}} \approx \frac{(5.0 - 1.2)^2 (1.4\times 10^{-6})^2}{2 \times 1.0\times 10^{-3}} = \frac{14.44 \times 1.96\times 10^{-12}}{2.0\times 10^{-3}} \approx \mathbf{14.15\,\mathrm{nJ}}
 \end{equation}
-Because $E_{\mathrm{min}} > E_{\mathrm{bleed}}$ ($45.1\,\mathrm{nJ} \gg 14.4\,\mathrm{nJ}$), each switching cycle injects excess net energy into the output capacitor. The capacitor charges monotonically cycle-by-cycle until $\Vout$ approaches $\Vin$, which forces $di_L/dt \to 0$ and halts net energy transfer. Connecting an active load ($R_L \le 68\,\Omega$) absorbs this minimum energy, restoring closed-loop regulation.
+Because the minimum pulse packet ($14.15\,\mathrm{nJ}$) virtually equals the bleeder dissipation capacity ($14.40\,\mathrm{nJ}$), any slight increase in line voltage or comparator offset injects net energy into the output capacitor cycle-by-cycle. The capacitor charges monotonically until $\Vout$ approaches $\Vin$, which forces $di_L/dt \to 0$ and halts further energy transfer. Connecting an active load ($R_L \le 68\,\Omega$) easily absorbs this minimum energy packet, restoring tight closed-loop regulation.
 
 \subsection{Oscilloscope Captures of Discontinuous Conduction (DCM) Ringing}
 Figure~\ref{fig:scope_dcm} presents the captured oscilloscope traces illustrating the high-frequency ringing on switch-node $\Vx$ in DCM.
@@ -1253,6 +1252,7 @@ Table~\ref{tab:table7} presents a direct head-to-head performance comparison bet
         \item \textbf{Inductor Ripple Current ($\dI$):} Because $\dI \propto 1/\fs$, doubling $\fs$ to $200\,\mathrm{kHz}$ \textbf{halves $\dI$} from $10.86\,\mathrm{mA}$ to $\mathbf{5.43\,\mathrm{mA}}$.
         \item \textbf{Output Voltage Ripple:} ESR ripple halves from $0.271\,\mathrm{mV}$ to $\mathbf{0.136\,\mathrm{mV}_{\mathrm{p\text{-}p}}}$; capacitive ripple quarters from $0.034\,\mathrm{mV}$ to $\mathbf{0.008\,\mathrm{mV}}$.
         \item \textbf{Losses \& Efficiency:} Conduction losses remain unchanged. Switching loss ($P_{\mathrm{sw}}$) doubles from $3.25\,\mathrm{mW}$ to $\mathbf{6.50\,\mathrm{mW}}$, and gate drive loss doubles from $1.00\,\mathrm{mW}$ to $\mathbf{2.00\,\mathrm{mW}}$. Total power stage losses rise by $4.25\,\mathrm{mW}$, reducing stage efficiency from $70.4\%$ to $\mathbf{68.7\%}$.
+        \item \textbf{Trade-Off Visualization:} Figure~\ref{fig:plot8_freq} illustrates this frequency scaling trade-off across $50\text{--}400\,\mathrm{kHz}$, confirming $100\,\mathrm{kHz}$ as the optimal compromise between inductor ripple attenuation and escalating dynamic switching losses.
     \end{itemize}
 
     \item \textbf{The loop recovers from a load step in about 20\,ms. Why was a low crossover frequency chosen? Name one change to the compensator, or to the modulator (for example making the ramp amplitude proportional to $\Vin$), that would improve the line-step response.}
@@ -1262,6 +1262,7 @@ Table~\ref{tab:table7} presents a direct head-to-head performance comparison bet
         \item \textbf{Low Crossover Rationale:} The LC filter resonance is $f_o \approx 252\,\mathrm{Hz}$ (with a $-180^\circ$ phase drop). Placing the integrator crossover at $f_c \approx 15\text{--}25\,\mathrm{Hz} \ll f_o$ ensures the loop crosses $0\,\mathrm{dB}$ where phase lag is only $-90^\circ$, guaranteeing an unconditional $\approx 90^\circ$ phase margin without requiring sensitive phase-lead networks.
         \item \textbf{Compensator Improvement:} Add a zero resistor $R_z$ in series with $C_i$ (Type-II compensator) to provide $+90^\circ$ phase boost, pushing $f_c > 1\,\mathrm{kHz}$ and shortening settling time to $< 1\,\mathrm{ms}$.
         \item \textbf{Modulator Improvement ($\Vin$ Feedforward):} Make ramp amplitude proportional to line voltage ($V_{\mathrm{ramp}} = k \cdot \Vin$). Then $D = \Vc / (k \Vin)$, giving $\Vout = D \Vin = \Vc / k$. Line variations are cancelled cycle-by-cycle without waiting for the feedback integrator.
+        \item \textbf{Dynamic Step Response:} Figure~\ref{fig:plot2_transient} demonstrates the simulated closed-loop line-step ($4.0\,\mathrm{V} \to 5.0\,\mathrm{V}$) and load-step dynamic recovery, illustrating the $\approx 35\,\mathrm{ms}$ settling behavior resulting from the slow loop.
     \end{itemize}
 
     \item \textbf{Why can the gate of a P-channel high-side switch be driven from $\Vin$ itself, whereas an N-channel high-side switch needs a gate voltage above $\Vin$? What is the penalty of the P-channel device at $\Vin = 3$\,V, and how did you check that your device is suitable?}

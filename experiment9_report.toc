@@ -1,25 +1,61 @@
 \contentsline {section}{\numberline {1}Aim and Objectives}{3}{section.1}%
 \contentsline {section}{\numberline {2}Apparatus and Components Required}{3}{section.2}%
-\contentsline {section}{\numberline {3}Theoretical Background and Mathematical Modeling}{3}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Basic Buck Topology and Volt-Second Balance}{3}{subsection.3.1}%
-\contentsline {subsubsection}{\numberline {3.1.1}Switch ON State ($0 \le t < DT$)}{5}{subsubsection.3.1.1}%
+\contentsline {section}{\numberline {3}Theoretical Background and Mathematical Modeling}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Basic Buck Topology and Volt-Second Balance}{5}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Switch ON State ($0 \le t < DT$)}{6}{subsubsection.3.1.1}%
 \contentsline {subsubsection}{\numberline {3.1.2}Switch OFF State ($DT \le t < T$)}{6}{subsubsection.3.1.2}%
-\contentsline {subsubsection}{\numberline {3.1.3}Volt-Second Balance and Exact Conversion Ratio}{6}{subsubsection.3.1.3}%
-\contentsline {subsection}{\numberline {3.2}Inductor Current Ripple and Conduction Boundaries}{6}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Output Voltage Ripple and Low-ESR Capacitor Design}{7}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Pulse-Width Modulator (PWM) Operation}{7}{subsection.3.4}%
-\contentsline {subsection}{\numberline {3.5}Closed-Loop Error Amplifier and Stability Considerations}{8}{subsection.3.5}%
-\contentsline {section}{\numberline {4}Design Calculations}{8}{section.4}%
-\contentsline {section}{\numberline {5}Experimental Procedure and Safety Precautions}{8}{section.5}%
-\contentsline {section}{\numberline {6}Part A: Pulse-Width Modulator Characterization}{9}{section.6}%
-\contentsline {section}{\numberline {7}Part B: Open-Loop Power Stage Characterization}{9}{section.7}%
-\contentsline {section}{\numberline {8}Part C: Closed-Loop Line Regulation}{12}{section.8}%
-\contentsline {section}{\numberline {9}Part D: Closed-Loop Load Regulation and Conduction Modes}{14}{section.9}%
-\contentsline {subsection}{\numberline {9.1}Physical Cause of Light-Load Runaway (Bleeder Only)}{14}{subsection.9.1}%
-\contentsline {subsection}{\numberline {9.2}DSO Captures of Discontinuous Conduction Ringing}{15}{subsection.9.2}%
-\contentsline {section}{\numberline {10}Part E: Output Ripple Voltage and Noise Analysis}{16}{section.10}%
-\contentsline {section}{\numberline {11}Part F: Power Efficiency and Loss Budget Analysis}{16}{section.11}%
-\contentsline {subsection}{\numberline {11.1}Power Stage Loss Budget at 5.0\,V and 100\,mA Load}{18}{subsection.11.1}%
-\contentsline {section}{\numberline {12}Part G: Comparison with Series Linear Regulator}{18}{section.12}%
-\contentsline {section}{\numberline {13}Analysis and Discussion Questions}{18}{section.13}%
-\contentsline {section}{\numberline {14}Conclusion}{21}{section.14}%
+\contentsline {subsubsection}{\numberline {3.1.3}Volt-Second Balance Condition}{6}{subsubsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.2}Inductor Ripple Current and Conduction Modes}{7}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Continuous vs. Discontinuous Conduction Mode (CCM vs. DCM)}{7}{subsubsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.3}Output Voltage Ripple Mechanics and Filtering}{8}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Capacitive Charging Ripple ($\Delta V_{C}$)}{8}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Resistive ESR Ripple ($\Delta V_{\mathrm {ESR}}$)}{8}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}The 0.1\% Ripple Limit and Parallel Capacitor Bank Design}{8}{subsubsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.4}Pulse-Width Modulator Operation}{9}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Control Loop Architecture and Integral Compensation}{9}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.1}Op-Amp Input Bias Balancing}{10}{subsubsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.6}High-Side P-MOSFET Gate Drive and Buffer Action}{10}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Power Loss Budget and Efficiency Modeling}{11}{subsection.3.7}%
+\contentsline {section}{\numberline {4}Design Calculations}{12}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Operating Duty Cycle}{12}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Inductor Current Ripple and Critical Current}{12}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Output Voltage Ripple}{13}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Maximum Allowable Capacitor ESR}{13}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Loop Resonance and Integrator Crossover Frequency}{13}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Loss Budget Breakdown at $V_{\mathrm {IN}}= 5.0\,\mathrm {V}$, $I_{\mathrm {LOAD}}= 100\,\mathrm {mA}$}{13}{subsection.4.6}%
+\contentsline {section}{\numberline {5}Experimental Procedure and Safety Precautions}{15}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Safety Limits and Operational Precautions}{15}{subsection.5.1}%
+\contentsline {section}{\numberline {6}Part A: Pulse-Width Modulator Characterization}{16}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Circuit Configuration and Test Method}{16}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Observation Table}{16}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Waveform Captures and Bench Measurements}{17}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Transfer Characteristic and Delay Offset Analysis}{17}{subsection.6.4}%
+\contentsline {section}{\numberline {7}Part B: Open-Loop Power Stage Characterization}{18}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Circuit Arrangement and Operating Method}{18}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Observation Table}{19}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Waveform Observations and Voltage Discrepancy Analysis}{19}{subsection.7.3}%
+\contentsline {subsubsection}{\numberline {7.3.1}Explanation of Discrepancy Between Measured and Ideal Predicted $V_{\mathrm {OUT}}$}{20}{subsubsection.7.3.1}%
+\contentsline {section}{\numberline {8}Part C: Closed-Loop Line Regulation}{21}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Closed-Loop Circuit Connection}{21}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Observation Table}{21}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Line Regulation Calculation}{21}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}Closed-Loop Startup and Simulation Waveforms}{22}{subsection.8.4}%
+\contentsline {section}{\numberline {9}Part D: Closed-Loop Load Regulation and Conduction Modes}{22}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Test Procedure}{23}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Observation Table}{23}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Load Regulation Calculation}{23}{subsection.9.3}%
+\contentsline {subsection}{\numberline {9.4}Analysis of the Light-Load Runaway Phenomenon (Bleeder Only)}{24}{subsection.9.4}%
+\contentsline {subsection}{\numberline {9.5}Oscilloscope Captures of Discontinuous Conduction (DCM) Ringing}{25}{subsection.9.5}%
+\contentsline {section}{\numberline {10}Part E: Output Ripple Voltage and Noise Analysis}{25}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Measurement Procedure}{25}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Observation Table}{25}{subsection.10.2}%
+\contentsline {subsection}{\numberline {10.3}In-Depth Root-Cause Analysis of Measured Ripple vs. Theory}{26}{subsection.10.3}%
+\contentsline {section}{\numberline {11}Part F: Power Efficiency and Loss Budget Analysis}{26}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Efficiency Measurements at Full Load ($R_L = 12\,\Omega $)}{27}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Observation Table}{27}{subsection.11.2}%
+\contentsline {subsection}{\numberline {11.3}Loss Budget Breakdown and Synchronous Rectification Comparison}{27}{subsection.11.3}%
+\contentsline {subsubsection}{\numberline {11.3.1}Impact of Synchronous Rectification}{28}{subsubsection.11.3.1}%
+\contentsline {subsection}{\numberline {11.4}Efficiency Scaling Behavior Across Load Currents}{29}{subsection.11.4}%
+\contentsline {section}{\numberline {12}Part G: Comparison with Series Linear Regulator}{29}{section.12}%
+\contentsline {section}{\numberline {13}Analysis and Discussion Questions}{30}{section.13}%
+\contentsline {section}{\numberline {14}Conclusion}{36}{section.14}%
